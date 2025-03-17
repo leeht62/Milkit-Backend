@@ -1,5 +1,6 @@
 package com.milkit_shop.controller;
 
+import com.milkit_shop.dto.MemberDto;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -22,19 +23,15 @@ public class MemberController {
   private final MemberService memberService;
   private final PasswordEncoder passwordEncoder;
   @GetMapping("/loginOk")
-  public ResponseEntity<Map<String, String>> loginOk() {
+  public ResponseEntity<Member> loginOk() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     String email = authentication.getName();
-    String authorities = authentication.getAuthorities().toString();
-
+    Member member = memberService.findMemberByEmail(email);
+    if (member == null) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
     System.out.println("로그인한 유저 이메일:" + email);
-    System.out.println("유저 권한:" + authentication.getAuthorities());
-
-    Map<String, String> MemberInfo = new HashMap<>();
-    MemberInfo.put("email", email);
-    MemberInfo.put("authorities", authorities);
-
-    return ResponseEntity.ok(MemberInfo);  // 클라이언트에게 사용자 정보를 반환
+    return ResponseEntity.ok(member);
   }
 
   @PostMapping("/join")

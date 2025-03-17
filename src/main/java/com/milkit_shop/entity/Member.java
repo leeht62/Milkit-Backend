@@ -1,13 +1,14 @@
 package com.milkit_shop.entity;
 
+import com.milkit_shop.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 
 @Builder
-@Data
 @Entity
 @Getter
 @Setter
@@ -27,10 +28,6 @@ public class Member {
   private String password;
 
   private String role;
-
-  @CreationTimestamp
-  private Timestamp createDate;
-
 
 
 }

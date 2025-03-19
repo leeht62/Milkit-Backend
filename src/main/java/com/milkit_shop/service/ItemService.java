@@ -19,7 +19,12 @@ public class ItemService {
   @Autowired ItemRepository itemRepository;
 
   public void saveItem(Item item) {
-    itemRepository.save(item);
+    List<Item> existingItem = itemRepository.findByName(item.getName());
+    // 기존에 없으면 새로 저장
+    if (existingItem.isEmpty()) {  // 이름이 중복되지 않으면 아이템을 저장
+      itemRepository.save(item);
+    }
+
   }
 
   //전체 상품목록 조회

@@ -18,7 +18,7 @@ public class Item {
   @Column(name = "item_id")
   private Long id; //아이템 고유번호
 
-  @Column(nullable=false)
+  @Column(name="name",nullable=false)
   private String name; //상품 이름
   @Column(name="price",nullable=false)
   private int price; //상품 가격

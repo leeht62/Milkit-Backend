@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,18 +18,7 @@ import java.util.stream.Collectors;
 public class ItemService {
   @Autowired ItemRepository itemRepository;
 
-
   public void saveItem(Item item) {
-    itemRepository.save(item);
-  }
-
-  public List<Item> finditemList() {
-    return itemRepository.findAll();
-  }
-
-  @Transactional
-  public void saveItem(ItemDto itemDTO) {
-    Item item = changetoItem(itemDTO);
     itemRepository.save(item);
   }
 
@@ -36,35 +26,16 @@ public class ItemService {
   @Transactional
   public List<ItemDto> itemList() {
     List<Item> items = itemRepository.findAll();
-    return changeToDTOList(items);
+    List<ItemDto> ItemDtoList = new ArrayList<>();
+    // main에 필요한 값들만 Dto로 만들어서 보내준다.
+    for(int i=0; i<items.size(); i++){
+      ItemDto mainDto = new ItemDto(items.get(i));
+      ItemDtoList.add(mainDto);
+    }
+    return ItemDtoList;
   }
 
 
-  private List<ItemDto> changeToDTOList(List<Item> items) {
-    return items.stream()
-        .map(item -> {
-          ItemDto dto = new ItemDto();
-          dto.setId(item.getId());
-          dto.setName(item.getName());
-          dto.setPrice(item.getPrice());
-          dto.setStock(item.getStockNumber());
-          dto.setImage(item.getImage());
-          dto.setContent(item.getContent());
-          return dto;
-        })
-        .collect(Collectors.toList());
-  }
-
-  public Item changetoItem(ItemDto itemDto){
-    Item item=new Item();
-    item.setName(itemDto.getName());
-    item.setId(itemDto.getId());
-    item.setImage(itemDto.getImage());
-    item.setContent(itemDto.getContent());
-    item.setPrice(itemDto.getPrice());
-    item.setStockNumber(itemDto.getStock());
-    return item;
-  }
 
 
 }

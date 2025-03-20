@@ -1,5 +1,6 @@
 package com.milkit_shop.dto;
 
+import com.milkit_shop.constant.Category;
 import com.milkit_shop.entity.Item;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,8 @@ public class ItemDto {
   private String content;
   private int price;
   private int stock;
+  private Category category;
+
 
   public ItemDto(Item item) {
     this.id = item.getId();
@@ -22,5 +25,6 @@ public class ItemDto {
     this.price = item.getPrice();
     this.image=item.getImage();
     this.stock=item.getStockNumber();
+    this.category=item.getCategory();
   }
 }

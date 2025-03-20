@@ -1,11 +1,10 @@
 package com.milkit_shop.entity;
 
-import com.milkit_shop.dto.ItemDto;
+import com.milkit_shop.constant.Category;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Table(name="item")
@@ -29,6 +28,9 @@ public class Item {
   private String image;
 
   private String content;
+
+  @Enumerated(EnumType.STRING)
+  private Category category;
 
 
 

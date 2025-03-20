@@ -1,5 +1,6 @@
 package com.milkit_shop.entity;
 
+import com.milkit_shop.constant.Role;
 import com.milkit_shop.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,7 +28,8 @@ public class Member {
 
   private String password;
 
-  private String role;
+  @Enumerated(EnumType.STRING)
+  private Role role;
 
 
 }

@@ -1,5 +1,6 @@
 package com.milkit_shop.service;
 
+import com.milkit_shop.constant.Role;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +14,11 @@ public class MemberService{
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
   public Member saveMember(Member member){
+    Duplicate(member);
     String password=member.getPassword();
     String encPassword=bCryptPasswordEncoder.encode(password);
     member.setPassword(encPassword);
-    member.setRole("ROLE_USER");
+    member.setRole(Role.USER);
     return memberRepository.save(member);
   }
 
@@ -29,6 +31,20 @@ public class MemberService{
       throw new IllegalStateException("이미 가입된 회원입니다.");
     }
   }
+
+  public Member saveAdminMember(Member member){
+
+    String password=member.getPassword();
+    String encPassword=bCryptPasswordEncoder.encode(password);
+    member.setPassword(encPassword);
+    member.setRole(Role.ADMIN);
+    if (member==null) {
+      memberRepository.save(member);
+    }
+    return member;
+  }
+
+
 
 
 

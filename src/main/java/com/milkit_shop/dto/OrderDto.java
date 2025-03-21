@@ -13,16 +13,11 @@ import lombok.Setter;
 @Setter
 public class OrderDto {
   private Long id;
-  private String name;
   private int count;
-  private String orderDate;
-  private Status status;
 
   public OrderDto(Order order) {
     this.id=order.getId();
-    this.name = order.getName();
     this.count= order.getCount();
-    this.orderDate = order.getOrderDate();
-    this.status=order.getStatus();
+
   }
 }

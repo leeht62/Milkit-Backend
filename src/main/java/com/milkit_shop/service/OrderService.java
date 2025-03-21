@@ -2,6 +2,8 @@ package com.milkit_shop.service;
 
 import com.milkit_shop.dto.ItemDto;
 import com.milkit_shop.dto.OrderDto;
+import com.milkit_shop.dto.OrderHistDto;
+import com.milkit_shop.dto.OrderItemDto;
 import com.milkit_shop.entity.Item;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.entity.Order;
@@ -40,14 +42,20 @@ public class OrderService {
     orderRepository.save(order);
   }
   @Transactional
-  public List<OrderDto> orderList(String email) {
+  public List<OrderHistDto> orderList(String email) {
     List<Order> orders= orderRepository.findOrders(email);
-    List<OrderDto> OrderDtoList = new ArrayList<>();
-    for(int i=0; i<orders.size(); i++){
-      OrderDto orderDto = new OrderDto(orders.get(i));
-      OrderDtoList.add(orderDto);
+    List<OrderHistDto> orderHistDtos=new ArrayList<>();
+
+    for(Order order : orders){
+      OrderHistDto orderHistDto=new OrderHistDto(order);
+      List<OrderItem> orderItemList =order.getOrderItems();
+      for(OrderItem orderItem : orderItemList) {
+        OrderItemDto orderItemDto=new OrderItemDto(orderItem);
+        orderHistDto.addOrderItemDto(orderItemDto);
+      }
+      orderHistDtos.add(orderHistDto);
     }
-    return OrderDtoList;
+    return orderHistDtos;
   }
   @Transactional
   public void cancelOrder(Long id) {

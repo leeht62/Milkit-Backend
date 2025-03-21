@@ -1,5 +1,8 @@
 package com.milkit_shop.dto;
 
+import com.milkit_shop.constant.Status;
+import com.milkit_shop.entity.Item;
+import com.milkit_shop.entity.Order;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -9,12 +12,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderDto {
-  @NotNull(message="상품 아이디는 필수 입력 값입니다.")
-  private Long itemId;
-
+  private Long id;
   private String name;
-
-  @Min(value=1,message="최소 주문 수량은 1개 입니다.")
-  @Max(value=999,message="최대 주문 수량은 999개입니다.")
   private int count;
+  private String orderDate;
+  private Status status;
+
+  public OrderDto(Order order) {
+    this.id=order.getId();
+    this.name = order.getName();
+    this.count= order.getCount();
+    this.orderDate = order.getOrderDate();
+    this.status=order.getStatus();
+  }
 }

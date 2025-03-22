@@ -1,12 +1,16 @@
 package com.milkit_shop.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.milkit_shop.constant.Status;
 import com.milkit_shop.entity.Order;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class OrderHistDto {
   public OrderHistDto(Order order){
     this.orderId=order.getId();

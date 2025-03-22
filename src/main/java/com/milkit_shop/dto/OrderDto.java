@@ -14,10 +14,4 @@ import lombok.Setter;
 public class OrderDto {
   private Long id;
   private int count;
-
-  public OrderDto(Order order) {
-    this.id=order.getId();
-    this.count= order.getCount();
-
-  }
 }

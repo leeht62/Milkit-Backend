@@ -27,6 +27,7 @@ import java.util.Optional;
 public class OrderService {
   private final ItemRepository itemRepository;
   private final MemberRepository memberRepository;
+  @Autowired
   private OrderRepository orderRepository;
 
   public void order(OrderDto orderDto, String email){
@@ -41,14 +42,16 @@ public class OrderService {
     Order order = Order.createOrder(member, orderItemList);
     orderRepository.save(order);
   }
+
   @Transactional
   public List<OrderHistDto> orderList(String email) {
     List<Order> orders= orderRepository.findOrders(email);
     List<OrderHistDto> orderHistDtos=new ArrayList<>();
-
+    System.out.println("1");
     for(Order order : orders){
       OrderHistDto orderHistDto=new OrderHistDto(order);
       List<OrderItem> orderItemList =order.getOrderItems();
+      System.out.println("2");
       for(OrderItem orderItem : orderItemList) {
         OrderItemDto orderItemDto=new OrderItemDto(orderItem);
         orderHistDto.addOrderItemDto(orderItemDto);
@@ -57,11 +60,12 @@ public class OrderService {
     }
     return orderHistDtos;
   }
+
   @Transactional
   public void cancelOrder(Long id) {
     Order order = orderRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
-    orderRepository.delete(order);
+    order.cancelOrder();
+    orderRepository.save(order);
   }
-
 }

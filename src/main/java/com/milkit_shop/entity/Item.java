@@ -32,7 +32,14 @@ public class Item {
   @Enumerated(EnumType.STRING)
   private Category category;
 
+  public void addStock(int count) {
+    stockNumber += count;
+  }
 
-
-
+  public void removeStock(int count) {
+    if (stockNumber - count < 0) {
+      throw new RuntimeException("상품 재고 부족");
+    }
+    stockNumber -= count;
+  }
 }

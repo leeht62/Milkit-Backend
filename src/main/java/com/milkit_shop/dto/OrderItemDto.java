@@ -9,11 +9,15 @@ public class OrderItemDto {
     this.name=orderItem.getItem().getName();
     this.count=orderItem.getCount();
     this.price=orderItem.getPrice();
+    this.image=orderItem.getImage();
   }
   private String name;
 
   private int count;
 
   private int price;
+
+  private String image;
+
 
 }

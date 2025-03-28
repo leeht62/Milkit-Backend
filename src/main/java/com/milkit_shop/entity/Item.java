@@ -1,6 +1,7 @@
 package com.milkit_shop.entity;
 
 import com.milkit_shop.constant.Category;
+import com.milkit_shop.constant.SubCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,9 @@ public class Item {
 
   @Enumerated(EnumType.STRING)
   private Category category;
+
+  @Enumerated(EnumType.STRING)
+  private SubCategory subcategory;
 
   public void addStock(int count) {
     stockNumber += count;

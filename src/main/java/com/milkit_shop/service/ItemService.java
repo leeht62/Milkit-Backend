@@ -22,8 +22,11 @@ public class ItemService {
     List<Item> existingItem = itemRepository.findByName(item.getName());
     if (existingItem.isEmpty()) {
       itemRepository.save(item);
+    }else{
+      Item items = existingItem.get(0);
+      item.setId(items.getId());
+      itemRepository.save(item);
     }
-
   }
 
   @Transactional

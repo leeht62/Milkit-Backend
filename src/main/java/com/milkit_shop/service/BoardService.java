@@ -63,7 +63,7 @@ public class BoardService {
       boardRepository.deleteById(id);
     }
   }
-  public BoardReadDto ReadBoard(Long boardId) { // 게시글 작성한 사람의 아이디와 이메일을 보낸다.
+  public BoardReadDto ReadBoard(Long boardId) {
     Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
     BoardReadDto boardReadDto = new BoardReadDto(board);
     return boardReadDto;

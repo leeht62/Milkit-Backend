@@ -47,11 +47,9 @@ public class OrderService {
   public List<OrderHistDto> orderList(String email) {
     List<Order> orders= orderRepository.findOrders(email);
     List<OrderHistDto> orderHistDtos=new ArrayList<>();
-    System.out.println("1");
     for(Order order : orders){
       OrderHistDto orderHistDto=new OrderHistDto(order);
       List<OrderItem> orderItemList =order.getOrderItems();
-      System.out.println("2");
       for(OrderItem orderItem : orderItemList) {
         OrderItemDto orderItemDto=new OrderItemDto(orderItem);
         orderHistDto.addOrderItemDto(orderItemDto);

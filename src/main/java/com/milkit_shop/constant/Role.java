@@ -1,5 +1,5 @@
 package com.milkit_shop.constant;
 
 public enum Role {
-  USER,ADMIN
+  ROLE_USER,ROLE_ADMIN
 }

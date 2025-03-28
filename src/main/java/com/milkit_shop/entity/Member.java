@@ -1,13 +1,12 @@
 package com.milkit_shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.milkit_shop.constant.Role;
-import com.milkit_shop.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Entity
@@ -31,5 +30,11 @@ public class Member {
   @Enumerated(EnumType.STRING)
   private Role role;
 
+  @JsonIgnore
+  @OneToMany(mappedBy = "member")
+  private List<Board> boards = new ArrayList<>();
 
+  @JsonIgnore
+  @OneToMany(mappedBy = "member")
+  private List<Comment> comments = new ArrayList<>();
 }

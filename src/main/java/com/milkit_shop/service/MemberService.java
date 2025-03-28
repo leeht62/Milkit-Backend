@@ -18,7 +18,7 @@ public class MemberService{
     String password=member.getPassword();
     String encPassword=bCryptPasswordEncoder.encode(password);
     member.setPassword(encPassword);
-    member.setRole(Role.USER);
+    member.setRole(Role.ROLE_USER);
     return memberRepository.save(member);
   }
 
@@ -34,12 +34,12 @@ public class MemberService{
 
   public Member saveAdminMember(Member member){
 
+    if (member.getEmail()==null) {
     String password=member.getPassword();
     String encPassword=bCryptPasswordEncoder.encode(password);
     member.setPassword(encPassword);
-    member.setRole(Role.ADMIN);
-    if (member==null) {
-      memberRepository.save(member);
+    member.setRole(Role.ROLE_ADMIN);
+    memberRepository.save(member);
     }
     return member;
   }

@@ -15,13 +15,13 @@ public class BoardDto {
   private LocalDateTime date;
   private String title;
   private String content;
-  private String userEmail;
+  private String email;
 
   public BoardDto(Board board) {
     this.id = board.getId();
     this.title = board.getTitle();
     this.content = board.getContent();
     this.date=LocalDateTime.now();
-    this.userEmail = board.getMember().getEmail();
+    this.email = board.getMember().getEmail();
   }
 }

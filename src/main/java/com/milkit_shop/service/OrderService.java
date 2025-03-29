@@ -1,6 +1,5 @@
 package com.milkit_shop.service;
 
-import com.milkit_shop.dto.ItemDto;
 import com.milkit_shop.dto.OrderDto;
 import com.milkit_shop.dto.OrderHistDto;
 import com.milkit_shop.dto.OrderItemDto;
@@ -19,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional

@@ -1,18 +1,14 @@
 package com.milkit_shop.service;
 
 import com.milkit_shop.constant.Category;
-import com.milkit_shop.constant.Role;
 import com.milkit_shop.constant.SubCategory;
-import com.milkit_shop.dto.ItemDto;
 import com.milkit_shop.entity.Item;
 import com.milkit_shop.entity.Member;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Book;
 
 @Service
 @RequiredArgsConstructor

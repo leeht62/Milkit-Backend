@@ -1,6 +1,5 @@
 package com.milkit_shop.service;
 
-import com.milkit_shop.dto.BoardDto;
 import com.milkit_shop.dto.CommentDto;
 import com.milkit_shop.entity.Board;
 import com.milkit_shop.entity.Comment;

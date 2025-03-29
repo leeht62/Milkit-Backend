@@ -2,7 +2,6 @@ package com.milkit_shop.controller;
 
 import com.milkit_shop.dto.OrderDto;
 import com.milkit_shop.dto.OrderHistDto;
-import com.milkit_shop.entity.Order;
 import com.milkit_shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

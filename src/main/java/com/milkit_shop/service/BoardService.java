@@ -19,6 +19,7 @@ import java.util.List;
 public class BoardService {
   private final BoardRepository boardRepository;
   private final MemberRepository memberRepository;
+  private final MemberService memberService;
   public List<BoardDto> getBoard() {
     List<Board> boards = boardRepository.findAllBoards();
     List<BoardDto> BoardDtoList = new ArrayList<>();
@@ -49,17 +50,17 @@ public class BoardService {
   }
   @Transactional
   public void updateBoard(Long boardId, BoardDto boardDto, String email) {
-    Member member = memberRepository.findByEmail(email);
     Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
-    if (board.getMember().getEmail().equals(email)){
+    Member member=memberService.findMemberByEmail(email);
+    if (board.getMember().getEmail().equals(email) || member.getRole().name().equals("ROLE_ADMIN")){
       board.update(boardDto);
     }
   }
   @Transactional
   public void deleteBoard(Long id,String email) {
-    Member member = memberRepository.findByEmail(email);
     Board board = boardRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-    if (board.getMember().getEmail().equals(email)){
+    Member member=memberService.findMemberByEmail(email);
+    if (board.getMember().getEmail().equals(email) || member.getRole().name().equals("ROLE_ADMIN")){
       boardRepository.deleteById(id);
     }
   }
@@ -68,5 +69,10 @@ public class BoardService {
     BoardReadDto boardReadDto = new BoardReadDto(board);
     return boardReadDto;
   }
+  public boolean duplicateBoard(Long id,String email){
+    Board board = boardRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    return board.getMember().getEmail().equals(email);
+  }
+
 
 }

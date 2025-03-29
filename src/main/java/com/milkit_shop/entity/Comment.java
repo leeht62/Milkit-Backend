@@ -1,6 +1,5 @@
 package com.milkit_shop.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.milkit_shop.dto.CommentDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

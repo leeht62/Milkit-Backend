@@ -1,7 +1,6 @@
 package com.milkit_shop.controller;
 
 import com.milkit_shop.dto.ItemDto;
-import com.milkit_shop.entity.Item;
 import com.milkit_shop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

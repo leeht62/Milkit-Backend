@@ -1,6 +1,5 @@
 package com.milkit_shop.controller;
 
-import com.milkit_shop.dto.MemberDto;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor

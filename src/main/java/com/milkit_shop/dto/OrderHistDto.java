@@ -1,6 +1,5 @@
 package com.milkit_shop.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.milkit_shop.constant.Status;
 import com.milkit_shop.entity.Order;
 import lombok.Getter;

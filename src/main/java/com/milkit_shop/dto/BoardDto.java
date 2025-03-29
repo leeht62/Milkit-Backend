@@ -16,6 +16,7 @@ public class BoardDto {
   private String title;
   private String content;
   private String email;
+  private String name;
 
   public BoardDto(Board board) {
     this.id = board.getId();
@@ -23,5 +24,6 @@ public class BoardDto {
     this.content = board.getContent();
     this.date=LocalDateTime.now();
     this.email = board.getMember().getEmail();
+    this.name = board.getMember().getName();
   }
 }

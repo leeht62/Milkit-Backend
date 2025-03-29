@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService{
@@ -33,13 +35,15 @@ public class MemberService{
   }
 
   public Member saveAdminMember(Member member){
-
-    if (member.getEmail()==null) {
     String password=member.getPassword();
     String encPassword=bCryptPasswordEncoder.encode(password);
     member.setPassword(encPassword);
     member.setRole(Role.ROLE_ADMIN);
-    memberRepository.save(member);
+    Member exist = memberRepository.findByEmail("admin@naver.com");
+    if(exist==null) {
+      memberRepository.save(member);
+    }else{
+      System.out.println("멤버가 이미 존재합니다.");
     }
     return member;
   }

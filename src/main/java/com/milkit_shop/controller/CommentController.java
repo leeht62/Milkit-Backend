@@ -27,10 +27,10 @@ public class CommentController {
     CommentDto commentDtos = commentService.createComment(boardId,email, commentDto);
       return ResponseEntity.status(HttpStatus.CREATED).body(commentDtos);
   }
-  @PatchMapping("/admin/{boardId}/deletecomment")
-  public ResponseEntity<Void> deleteComment(@PathVariable Long boardId,@PathVariable Long commentId,Principal principal) {
+  @PatchMapping("/admin/{commentId}/deletecomment")
+  public ResponseEntity<Void> deleteComment(@PathVariable Long commentId,Principal principal) {
     String email = principal.getName();
-    commentService.deleteComment(boardId,email,commentId);
+    commentService.deleteComment(email,commentId);
     return ResponseEntity.ok(null);
   }
 

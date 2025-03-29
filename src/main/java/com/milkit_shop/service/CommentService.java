@@ -46,11 +46,9 @@ public class CommentService {
   }
 
   @Transactional
-  public void deleteComment(Long BoardId,String email,Long commentId) {
-    Member member = memberRepository.findByEmail(email);
-    Board board = boardRepository.findById(BoardId).orElseThrow(EntityNotFoundException::new);
+  public void deleteComment(String email,Long commentId) {
     Comment comment=commentRepository.findById(commentId).orElseThrow(EntityNotFoundException::new);
-    if (board.getMember().getEmail().equals(email)){
+    if (comment.getMember().getEmail().equals(email)){
       commentRepository.delete(comment);
     }
   }

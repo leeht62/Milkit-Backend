@@ -22,7 +22,7 @@ public class BoardDto {
     this.id = board.getId();
     this.title = board.getTitle();
     this.content = board.getContent();
-    this.date=LocalDateTime.now();
+    this.date = board.getDate();
     this.email = board.getMember().getEmail();
     this.name = board.getMember().getName();
   }

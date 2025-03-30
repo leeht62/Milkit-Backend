@@ -42,6 +42,7 @@ public class Board {
   public Board(BoardDto boardDto) {
     this.title = boardDto.getTitle();
     this.content = boardDto.getContent();
+    this.Date =LocalDateTime.now();
   }
   public void addMember(Member member) {
     this.member = member;

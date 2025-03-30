@@ -35,6 +35,7 @@ public class OrderController {
     }
 
     // 주문 취소
+    // 주문 당사자가 취소했는지 검증을 하는 코드가 필요해보임
     @PatchMapping("/order/{id}/cancel")
     public ResponseEntity<Void> cancel(@PathVariable Long id) {
         orderService.cancelOrder(id);

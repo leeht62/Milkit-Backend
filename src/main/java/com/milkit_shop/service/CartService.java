@@ -24,26 +24,18 @@ public class CartService {
     @Autowired
     private MemberService memberService;
 
-    public CartDto getCartList(String email) {
+    public CartDto getCart (String email) {
         Cart cart = cartRepository.findByEmail(email);
         if (cart == null) {
             Member member = memberService.findMemberByEmail(email);
             cart = cartRepository.save(Cart.createCart(member));
         }
 
-        CartDto cartDto = new CartDto(cart);
-
-        List<CartItem> cartItemList = cart.getCartItems();
-        for (CartItem cartItem: cartItemList) {
-            CartItemDto cartItemDto = new CartItemDto(cartItem);
-            cartDto.addCartItemDto(cartItemDto);
-        }
-
-        return cartDto;
+        return new CartDto(cart);
     }
 
     @Transactional
-    public Cart addCart(CartItemDto cartItemDto, String email) {
+    public CartDto addItem(CartItemDto cartItemDto, String email) {
         Cart cart = cartRepository.findByEmail(email);
         if (cart == null) {
             Member member = memberService.findMemberByEmail(email);
@@ -52,9 +44,46 @@ public class CartService {
 
         Item item = itemRepository.findById(cartItemDto.getItemId()).orElseThrow(EntityNotFoundException::new);
 
-        CartItem cartItem = CartItem.createCartItem(cart, item, cartItemDto.getCount());
-        cart.addCartItem(cartItem);
+        CartItem cartItem = cart.findByItemId(item.getId());
+        if (cartItem == null) {
+            cartItem = CartItem.createCartItem(cart, item, cartItemDto.getCount());
+            cart.addCartItem(cartItem);
+        } else {
+            cart.increaseCartItemCount(cartItem, cartItemDto.getCount());
+        }
 
-        return cartRepository.save(cart);
+        Cart updated = cartRepository.save(cart);
+        return new CartDto(updated);
+    }
+
+    @Transactional
+    public CartDto decreaseItemCount(Long itemId, String email) {
+        Cart cart = cartRepository.findByEmail(email);
+
+        CartItem cartItem = cart.findByItemId(itemId);
+        if (cartItem == null) {
+            return null;
+        }
+
+        if (cartItem.getCount() <= 1) {
+            return deleteItem(itemId, email);
+        }
+
+        cart.decreaseCartItemCount(cartItem);
+        Cart updated = cartRepository.save(cart);
+        return new CartDto(updated);
+    }
+
+    public CartDto deleteItem(Long itemId, String email) {
+        Cart cart = cartRepository.findByEmail(email);
+
+        CartItem cartItem = cart.findByItemId(itemId);
+        if (cartItem == null) {
+            return null;
+        }
+
+        cart.deleteCartItem(cartItem);
+        Cart updated = cartRepository.save(cart);
+        return new CartDto(updated);
     }
 }

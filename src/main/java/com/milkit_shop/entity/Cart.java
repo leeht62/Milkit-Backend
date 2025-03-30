@@ -1,6 +1,7 @@
 package com.milkit_shop.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -21,13 +22,34 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<CartItem> cartItems = new ArrayList<>();
 
-    public void addCartItem(CartItem cartItem) {
-        cartItems.add(cartItem);
-    }
-
     public static Cart createCart(Member member) {
         Cart cart = new Cart();
         cart.member = member;
         return cart;
+    }
+
+    public void addCartItem(CartItem cartItem) {
+        cartItems.add(cartItem);
+    }
+
+    public void increaseCartItemCount(CartItem cartItem, int count) {
+        cartItem.increaseCount(count);
+    }
+
+    public void decreaseCartItemCount(CartItem cartItem) {
+        cartItem.decreaseCount();
+    }
+
+    public void deleteCartItem(CartItem cartItem) {
+        cartItems.remove(cartItem);
+    }
+
+    public CartItem findByItemId(Long itemId) {
+        for (CartItem ci: cartItems) {
+            if (ci.getItem().getId().equals(itemId)) {
+                return ci;
+            }
+        }
+        return null;
     }
 }

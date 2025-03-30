@@ -25,9 +25,17 @@ public class CartItem {
     public static CartItem createCartItem(Cart cart, Item item, int count) {
         CartItem cartItem = new CartItem();
         cartItem.cart = cart;
-        cart.addCartItem(cartItem);
         cartItem.item = item;
         cartItem.count = count;
         return cartItem;
     }
+
+    public void increaseCount(int count) {
+        this.count += count;
+    }
+
+    public void decreaseCount() {
+        this.count -= 1;
+    }
+
 }

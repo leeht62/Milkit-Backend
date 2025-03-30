@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,8 +19,13 @@ public class ItemController {
 
 
   @GetMapping("/list")
-  public ResponseEntity<List<ItemDto>> getAllItems() {
+  public ResponseEntity<List<ItemDto>> getAllItems(@RequestParam(value = "search", required = false) String search) {
     List<ItemDto> itemList = itemService.itemList();
-    return ResponseEntity.ok(itemList);
+    if (search == null){
+      return ResponseEntity.ok(itemList);
+    }else{
+      return ResponseEntity.ok(itemService.itemListSearch(search));
+    }
   }
+
 }

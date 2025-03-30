@@ -39,6 +39,16 @@ public class ItemService {
     return ItemDtoList;
   }
 
+  public List<ItemDto> itemListSearch(String search) {
+    List<Item> items = itemRepository.findItemsBySearch(search);
+    List<ItemDto> ItemDtoList = new ArrayList<>();
+    for(int i=0; i<items.size(); i++){
+      ItemDto mainDto = new ItemDto(items.get(i));
+      ItemDtoList.add(mainDto);
+    }
+    return ItemDtoList;
+  }
+
 
 
 

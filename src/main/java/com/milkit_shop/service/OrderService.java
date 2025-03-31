@@ -62,6 +62,7 @@ public class OrderService {
     Order order = orderRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
     order.cancelOrder();
-    orderRepository.save(order);
+
+    orderRepository.delete(order);
   }
 }

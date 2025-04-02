@@ -28,11 +28,13 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public ResponseEntity<Void> create(@RequestBody OrderDto dto, Principal principal) {
+    public ResponseEntity<OrderHistDto> create(@RequestBody OrderDto dto, Principal principal) {
         String email = principal.getName();
-        orderService.order(dto, email);
+        OrderHistDto orderHistDto = orderService.order(dto, email);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        return (orderHistDto != null) ?
+                ResponseEntity.status(HttpStatus.CREATED).body(orderHistDto) :
+                ResponseEntity.badRequest().build();
     }
 
     // 장바구니 상품들 주문

@@ -30,17 +30,22 @@ public class OrderService {
   private OrderRepository orderRepository;
 
   @Transactional
-  public void order(OrderDto orderDto, String email){
+  public OrderHistDto order(OrderDto orderDto, String email){
     Item item=itemRepository.findById(orderDto.getId())
         .orElseThrow(EntityNotFoundException::new);
     Member member = memberRepository.findByEmail(email);
 
     List<OrderItem> orderItemList = new ArrayList<>();
-    OrderItem orderItem=OrderItem.createOrderItem(item,orderDto.getCount());
-    orderItemList.add(orderItem);
+    orderItemList.add(OrderItem.createOrderItem(item,orderDto.getCount()));
 
-    Order order = Order.createOrder(member, orderItemList);
-    orderRepository.save(order);
+    Order saved = orderRepository.save(Order.createOrder(member, orderItemList));
+
+    OrderHistDto orderHistDto = new OrderHistDto(saved);
+    for (OrderItem orderItem : saved.getOrderItems()) {
+      OrderItemDto orderItemDto = new OrderItemDto(orderItem);
+      orderHistDto.addOrderItemDto(orderItemDto);
+    }
+    return orderHistDto;
   }
 
   @Transactional

@@ -2,6 +2,7 @@ package com.milkit_shop.entity;
 
 import com.milkit_shop.constant.Category;
 import com.milkit_shop.constant.SubCategory;
+import com.milkit_shop.exception.OutOfStockException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,7 +43,7 @@ public class Item {
 
   public void removeStock(int count) {
     if (stockNumber - count < 0) {
-      throw new RuntimeException("상품 재고 부족");
+      throw new OutOfStockException("상품 재고 부족");
     }
     stockNumber -= count;
   }

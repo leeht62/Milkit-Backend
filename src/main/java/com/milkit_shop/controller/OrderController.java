@@ -2,6 +2,9 @@ package com.milkit_shop.controller;
 
 import com.milkit_shop.dto.OrderDto;
 import com.milkit_shop.dto.OrderHistDto;
+import com.milkit_shop.dto.OrderItemDto;
+import com.milkit_shop.entity.OrderItem;
+import com.milkit_shop.service.CartService;
 import com.milkit_shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,8 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private CartService cartService;
 
     @GetMapping("/orders/{email}")
     public ResponseEntity<List<OrderHistDto>> showOrdersOfMember(@PathVariable String email) {
@@ -27,8 +32,24 @@ public class OrderController {
         String email = principal.getName();
         orderService.order(dto, email);
 
-
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
+    }
+
+    // 장바구니 상품들 주문
+    @PostMapping("/orders")
+    public ResponseEntity<OrderHistDto> create(@RequestBody List<OrderDto> dtos, Principal principal) {
+        String email = principal.getName();
+        OrderHistDto orderHistDto = orderService.order(dtos, email);
+
+        if (orderHistDto != null) {
+            // 주문 성공시 장바구니에서 해당 상품 제거
+            for (OrderItemDto orderItemDto: orderHistDto.getOrderItemDtoList()) {
+                cartService.deleteItem(orderItemDto.getItemId(), email);
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(orderHistDto);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PatchMapping("/order/{id}/cancel")

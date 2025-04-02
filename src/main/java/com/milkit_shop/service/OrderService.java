@@ -7,6 +7,7 @@ import com.milkit_shop.entity.Item;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.entity.Order;
 import com.milkit_shop.entity.OrderItem;
+import com.milkit_shop.exception.OutOfStockException;
 import com.milkit_shop.repository.ItemRepository;
 import com.milkit_shop.repository.MemberRepository;
 import com.milkit_shop.repository.OrderRepository;
@@ -28,17 +29,42 @@ public class OrderService {
   @Autowired
   private OrderRepository orderRepository;
 
+  @Transactional
   public void order(OrderDto orderDto, String email){
     Item item=itemRepository.findById(orderDto.getId())
         .orElseThrow(EntityNotFoundException::new);
     Member member = memberRepository.findByEmail(email);
 
-    List<OrderItem> orderItemList=new ArrayList<>();
+    List<OrderItem> orderItemList = new ArrayList<>();
     OrderItem orderItem=OrderItem.createOrderItem(item,orderDto.getCount());
     orderItemList.add(orderItem);
 
     Order order = Order.createOrder(member, orderItemList);
     orderRepository.save(order);
+  }
+
+  @Transactional
+  public OrderHistDto order(List<OrderDto> orderDtos, String email){
+    Member member = memberRepository.findByEmail(email);
+
+    List<OrderItem> orderItemList = new ArrayList<>();
+
+    for (OrderDto orderDto : orderDtos) {
+      Item item = itemRepository.findById(orderDto.getId())
+              .orElseThrow(EntityNotFoundException::new);
+
+      OrderItem orderItem = OrderItem.createOrderItem(item, orderDto.getCount());
+      orderItemList.add(orderItem);
+    }
+
+    Order saved = orderRepository.save(Order.createOrder(member, orderItemList));
+
+    OrderHistDto orderHistDto = new OrderHistDto(saved);
+    for (OrderItem orderItem : saved.getOrderItems()) {
+      OrderItemDto orderItemDto = new OrderItemDto(orderItem);
+      orderHistDto.addOrderItemDto(orderItemDto);
+    }
+    return orderHistDto;
   }
 
   @Transactional

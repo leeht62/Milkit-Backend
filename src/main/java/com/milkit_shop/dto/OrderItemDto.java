@@ -6,11 +6,14 @@ import lombok.Getter;
 @Getter
 public class OrderItemDto {
   public OrderItemDto(OrderItem orderItem){
+    this.itemId=orderItem.getItem().getId();
     this.name=orderItem.getItem().getName();
     this.count=orderItem.getCount();
     this.price=orderItem.getPrice();
     this.image=orderItem.getImage();
   }
+  private Long itemId;
+
   private String name;
 
   private int count;

@@ -17,11 +17,14 @@ public class CartItemDto {
     @Min(value = 1, message = "최소 1개 이상 담아주세요.")
     private int count;
 
+    private int stock;
+
     private String image;
 
     public CartItemDto(CartItem cartItem) {
         this.itemId = cartItem.getItem().getId();
         this.count = cartItem.getCount();
+        this.stock = cartItem.getItem().getStockNumber();
         this.image = cartItem.getItem().getImage();
     }
 }

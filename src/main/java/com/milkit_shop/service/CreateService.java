@@ -32,14 +32,12 @@ public class CreateService {
       Item item10 = createItem("알탕", "/eggSoup.jpg", "얼큰한 알탕입니다.", 11000, 5, Category.SOUP, SubCategory.JJIGAE);
       Item item11 = createItem("소세지야채볶음", "/Soya.jpg", "소세지와 야채를 함께 볶은 요리입니다.", 9500, 5, Category.ROAST, SubCategory.BOKKEUM);
       Item item12 = createItem("베이컨토마토파스타", "/bacontomatoPasta.jpg", "베이컨과 토마토를 볶아 만든 요리입니다.", 10500, 5, Category.PASTA, SubCategory.Noodle);
-
       Item item13 = createItem("멜론 샤베트", "/Melonsorbet.jpg", "달콤한 멜론 샤베트입니다.", 3500, 10, Category.ANJU, SubCategory.SORBET);
       Item item14 = createItem("레몬 샤베트", "/Lemonsorbet.jpg", "상큼한 레몬 샤베트입니다.", 3500, 10, Category.ANJU, SubCategory.SORBET);
       Item item15 = createItem("코코넛 샤베트", "/Cocosorbet.jpg", "고소한 코코넛 샤베트입니다.", 3500, 10, Category.ANJU, SubCategory.SORBET);
       Item item16 = createItem("요구르트 샤베트", "/Yogurtsorbet.jpg", "상큼한 요구르트 샤베트입니다.", 3500, 10, Category.ANJU, SubCategory.SORBET);
       Item item17 = createItem("한라봉 샤베트", "/Hallasorbet.jpg", "제주 한라봉 샤베트입니다.", 3500, 10, Category.ANJU, SubCategory.SORBET);
       Item item18 = createItem("샤인머스켓 샤베트", "/Shinesorbet.jpg", "달콤한 샤인머스켓 샤베트입니다.", 3500, 10, Category.ANJU, SubCategory.SORBET);
-
       Item item19 = createItem("타코야끼", "/takoyaki.jpg", "일본식 문어볼 요리입니다.", 5000, 10, Category.ANJU, SubCategory.FRIED);
       memberService.saveAdminMember(AdminMember);
       itemService.saveItem(item1);

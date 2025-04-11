@@ -51,5 +51,4 @@ public class MemberController {
   public ResponseEntity<String> loginError(){
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 오류");
   }
-
 }

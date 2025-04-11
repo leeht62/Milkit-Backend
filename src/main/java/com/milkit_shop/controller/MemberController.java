@@ -8,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -51,4 +48,11 @@ public class MemberController {
   public ResponseEntity<String> loginError(){
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 오류");
   }
+  @PostMapping("/{MemberId}/deleteMember")
+  public ResponseEntity<Void> delete(@PathVariable Long MemberId) {
+    Member member=memberService.findMemberById(MemberId);
+    memberService.deleteMember(member);
+    return ResponseEntity.ok().build();
+  }
+
 }

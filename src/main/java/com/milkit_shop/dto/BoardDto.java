@@ -23,7 +23,7 @@ public class BoardDto {
     this.title = board.getTitle();
     this.content = board.getContent();
     this.date = board.getDate();
-    this.email = board.getMember().getEmail();
-    this.name = board.getMember().getName();
+    this.email = board.getMember() != null ? board.getMember().getEmail() : null;
+    this.name =  board.getMember() != null ? board.getMember().getName() : "탈퇴한 사용자";
   }
 }

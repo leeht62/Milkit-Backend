@@ -1,6 +1,7 @@
 package com.milkit_shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.milkit_shop.constant.Login;
 import com.milkit_shop.constant.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,6 +30,9 @@ public class Member {
 
   @Enumerated(EnumType.STRING)
   private Role role;
+
+  @Enumerated(EnumType.STRING)
+  private Login login;
 
   @JsonIgnore
   @OneToMany(mappedBy = "member")

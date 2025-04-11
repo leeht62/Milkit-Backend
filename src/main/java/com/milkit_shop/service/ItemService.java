@@ -3,6 +3,7 @@ package com.milkit_shop.service;
 import com.milkit_shop.dto.ItemDto;
 import com.milkit_shop.entity.Item;
 import com.milkit_shop.repository.ItemRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,6 @@ public class ItemService {
     }
     return ItemDtoList;
   }
-
 
 
 

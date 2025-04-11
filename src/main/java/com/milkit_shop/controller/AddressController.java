@@ -25,7 +25,7 @@ public class AddressController {
     }
 
     @PostMapping("/address")
-    public ResponseEntity<AddressDto> add(AddressDto dto, Principal principal) {
+    public ResponseEntity<AddressDto> add(@RequestBody AddressDto dto, Principal principal) {
         String email = principal.getName();
         AddressDto addressDto = addressService.add(dto, email);
         return (addressDto != null) ?
@@ -33,7 +33,7 @@ public class AddressController {
                 ResponseEntity.badRequest().build();
     }
 
-    @DeleteMapping("/address/{id}/delete")
+    @DeleteMapping("/address/{addressId}/delete")
     public ResponseEntity<Void> delete(@PathVariable Long addressId, Principal principal) {
         String email = principal.getName();
         boolean success = addressService.delete(addressId, email);

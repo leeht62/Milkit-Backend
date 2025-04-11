@@ -22,9 +22,16 @@ public class Address {
     @Column
     private String addressDetail;
 
-    public Address(AddressDto dto, Member member) {
-        this.address = dto.getAddress();
-        this.addressDetail = dto.getAddressDetail();
-        this.member = member;
+//    public Address(AddressDto dto, Member member) {
+//        this.address = dto.getAddress();
+//        this.addressDetail = dto.getAddressDetail();
+//        this.member = member;
+//    }
+    public static Address createAddress(AddressDto dto, Member member) {
+        Address address  = new Address();
+        address.address = dto.getAddress();
+        address.addressDetail = dto.getAddressDetail();
+        address.member = member;
+        return address;
     }
 }

@@ -19,9 +19,7 @@ public class AddressService {
 
 
     public List<AddressDto> getList(String email) {
-        Member member = memberService.findMemberByEmail(email);
-
-        List<Address> addressList = addressRepository.findAllByMemberId(member.getId());
+        List<Address> addressList = addressRepository.findAllByEmail(email);
         List<AddressDto> addressDtos = new ArrayList<>();
         for (Address address: addressList) {
             addressDtos.add(new AddressDto(address));
@@ -33,7 +31,8 @@ public class AddressService {
     public AddressDto add(AddressDto dto, String email) {
         Member member = memberService.findMemberByEmail(email);
 
-        Address address = new Address(dto, member);
+//        Address address = new Address(dto, member);
+        Address address = Address.createAddress(dto, member);
         Address saved = addressRepository.save(address);
         return new AddressDto(saved);
     }

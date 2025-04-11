@@ -22,8 +22,8 @@ public class AiController {
   @Value("classpath:/item.sql")
   private Resource ddlResource;
 
-  @Value("classpath:/sql-prompt-template.st")
-  private Resource sqlPromptTemplateResource;
+  @Value("classpath:/sql-question.st")
+  private Resource sqlquestion;
 
   private final ChatClient aiClient;
   private final JdbcTemplate jdbcTemplate;
@@ -37,13 +37,12 @@ public class AiController {
 
   @PostMapping
   public AiService sql(@RequestParam(name = "question") String question) throws IOException {
-    String schema = ddlResource.getContentAsString(Charset.defaultCharset()); // UTF-8
-    // LLM 자동으로 select SQL이 생성
+    String data = ddlResource.getContentAsString(Charset.defaultCharset());
     String response = aiClient.prompt()
         .user(userSpec -> userSpec
-            .text(sqlPromptTemplateResource)
+            .text(sqlquestion)
             .param("question", question)
-            .param("ddl", schema)
+            .param("ddl", data)
         )
         .call()
         .content();

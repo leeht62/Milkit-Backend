@@ -53,7 +53,7 @@ public class AiController {
       List<Map<String, Object>> results = jdbcTemplate.queryForList(query);
       return new AiService(query, results);
     }
-    return new AiService(query, List.of()); // null
+    return new AiService(query, List.of());
   }
 
 }

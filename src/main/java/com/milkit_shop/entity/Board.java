@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,6 +25,9 @@ public class Board {
   @GeneratedValue
   private Long id;
 
+
+  @OnDelete(action = OnDeleteAction.SET_NULL)
+  @JoinColumn(name = "member_id", nullable = true)
   @ManyToOne(fetch = FetchType.LAZY)
   private Member member;
 

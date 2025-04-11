@@ -1,8 +1,12 @@
 package com.milkit_shop.service;
 
+import com.milkit_shop.constant.Login;
 import com.milkit_shop.constant.Role;
+import com.milkit_shop.entity.Cart;
 import com.milkit_shop.entity.Member;
+import com.milkit_shop.repository.CartRepository;
 import com.milkit_shop.repository.MemberRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberService{
   private final MemberRepository memberRepository;
+  private final CartRepository cartRepository;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
   public Member saveMember(Member member){
@@ -19,6 +24,7 @@ public class MemberService{
     String encPassword=bCryptPasswordEncoder.encode(password);
     member.setPassword(encPassword);
     member.setRole(Role.USER);
+    member.setLogin(Login.Register);
     return memberRepository.save(member);
   }
 
@@ -45,6 +51,16 @@ public class MemberService{
     }
     return member;
   }
+
+  public void deleteMember(Member member){
+    memberRepository.delete(member);
+  }
+
+  public Member findMemberById(Long id){
+    return memberRepository.findById(id)
+        .orElseThrow(EntityNotFoundException::new);
+  }
+
 
 
 

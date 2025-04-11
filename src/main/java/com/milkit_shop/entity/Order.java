@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class Order {
   @Column(name = "order_id")
   private Long id;
 
+  @OnDelete(action = OnDeleteAction.CASCADE)
   @ManyToOne(fetch=FetchType.LAZY)
   @JoinColumn(name="member_id")
   private Member member;

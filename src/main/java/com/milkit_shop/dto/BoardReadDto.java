@@ -14,6 +14,6 @@ public class BoardReadDto {
   public BoardReadDto(Board board) {
     this.title = board.getTitle();
     this.content = board.getContent();
-    this.memberEmail = board.getMember().getEmail();
+    this.memberEmail = board.getMember() != null ? board.getMember().getEmail() : "탈퇴한 사용자";
   }
 }

@@ -3,6 +3,8 @@ package com.milkit_shop.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.Getter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Cart {
     @GeneratedValue
     private Long id;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;

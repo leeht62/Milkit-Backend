@@ -1,8 +1,7 @@
 package com.milkit_shop.service;
 
-import com.milkit_shop.constant.Login;
+import com.milkit_shop.constant.ItemStatus;
 import com.milkit_shop.constant.Role;
-import com.milkit_shop.entity.Cart;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.repository.CartRepository;
 import com.milkit_shop.repository.MemberRepository;
@@ -24,7 +23,6 @@ public class MemberService{
     String encPassword=bCryptPasswordEncoder.encode(password);
     member.setPassword(encPassword);
     member.setRole(Role.USER);
-    member.setLogin(Login.Register);
     return memberRepository.save(member);
   }
 

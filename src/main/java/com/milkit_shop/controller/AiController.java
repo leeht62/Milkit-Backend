@@ -20,5 +20,4 @@ import java.util.Map;
 public class AiController {
 
 
-
 }

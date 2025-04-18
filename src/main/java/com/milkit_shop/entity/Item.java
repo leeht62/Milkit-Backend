@@ -1,6 +1,7 @@
 package com.milkit_shop.entity;
 
 import com.milkit_shop.constant.Category;
+import com.milkit_shop.constant.ItemStatus;
 import com.milkit_shop.constant.SubCategory;
 import com.milkit_shop.exception.OutOfStockException;
 import jakarta.persistence.*;
@@ -37,6 +38,13 @@ public class Item {
   @Enumerated(EnumType.STRING)
   private SubCategory subcategory;
 
+  @Enumerated(EnumType.STRING)
+  private ItemStatus itemStatus;
+
+  public void updateItemStatus() {
+    this.itemStatus = this.stockNumber <= 2 ? ItemStatus.BEST : ItemStatus.NEW;
+  }
+
   public void addStock(int count) {
     stockNumber += count;
   }
@@ -46,5 +54,6 @@ public class Item {
       throw new OutOfStockException("상품 재고 부족");
     }
     stockNumber -= count;
+    updateItemStatus();
   }
 }

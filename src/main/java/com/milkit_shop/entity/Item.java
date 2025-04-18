@@ -43,6 +43,9 @@ public class Item {
 
   public void updateItemStatus() {
     this.itemStatus = this.stockNumber <= 2 ? ItemStatus.BEST : ItemStatus.NEW;
+    if (this.itemStatus == ItemStatus.BEST) {
+      this.price -= 3000;
+    }
   }
 
   public void addStock(int count) {
@@ -56,4 +59,5 @@ public class Item {
     stockNumber -= count;
     updateItemStatus();
   }
+
 }

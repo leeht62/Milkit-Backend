@@ -19,5 +19,4 @@ import java.util.Map;
 @RequestMapping("/ai")
 public class AiController {
 
-
 }

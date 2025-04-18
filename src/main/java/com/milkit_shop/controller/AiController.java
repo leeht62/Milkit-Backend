@@ -19,41 +19,5 @@ import java.util.Map;
 @RequestMapping("/ai")
 public class AiController {
 
-  @Value("classpath:/item.sql")
-  private Resource ddlResource;
-
-  @Value("classpath:/sql-question.st")
-  private Resource sqlquestion;
-
-  private final ChatClient aiClient;
-  private final JdbcTemplate jdbcTemplate;
-
-
-  public AiController(ChatClient.Builder aiClient, JdbcTemplate jdbcTemplate) {
-    this.aiClient = aiClient.build();
-    this.jdbcTemplate = jdbcTemplate;
-  }
-
-
-  @PostMapping
-  public AiService sql(@RequestParam(name = "question") String question) throws IOException {
-    String data = ddlResource.getContentAsString(Charset.defaultCharset());
-    String response = aiClient.prompt()
-        .user(userSpec -> userSpec
-            .text(sqlquestion)
-            .param("question", question)
-            .param("ddl", data)
-        )
-        .call()
-        .content();
-
-    String query = response.split("\n")[0].trim();
-
-    if (query.toLowerCase().startsWith("select")) {
-      List<Map<String, Object>> results = jdbcTemplate.queryForList(query);
-      return new AiService(query, results);
-    }
-    return new AiService(query, List.of());
-  }
 
 }

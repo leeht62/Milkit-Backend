@@ -1,5 +1,6 @@
 package com.milkit_shop.dto;
 
+import com.milkit_shop.constant.Recommend;
 import com.milkit_shop.entity.OrderItem;
 import lombok.Getter;
 
@@ -21,6 +22,7 @@ public class OrderItemDto {
   private int price;
 
   private String image;
+
 
 
 }

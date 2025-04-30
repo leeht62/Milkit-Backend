@@ -1,5 +1,7 @@
 package com.milkit_shop.entity;
 
+import com.milkit_shop.constant.ItemStatus;
+import com.milkit_shop.constant.Recommend;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,19 +32,24 @@ public class OrderItem {
     @Column
     private int price;
 
+
+
     public static OrderItem createOrderItem(Item item, int count) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
         orderItem.setCount(count);
         orderItem.setPrice(item.getPrice());
         item.removeStock(count);
-
         return orderItem;
     }
+
 
     public void cancel() {
         item.addStock(count);
     }
 
-}
+
+
+
+    }
 

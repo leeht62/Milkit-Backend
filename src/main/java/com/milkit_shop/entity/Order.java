@@ -1,5 +1,7 @@
 package com.milkit_shop.entity;
 
+import com.milkit_shop.constant.ItemStatus;
+import com.milkit_shop.constant.Recommend;
 import com.milkit_shop.constant.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -23,7 +25,7 @@ public class Order {
   @Column(name = "order_id")
   private Long id;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "member_id")
   private Member member;
 
@@ -33,6 +35,10 @@ public class Order {
 
   @Column
   private LocalDateTime orderDate;
+
+  @Column
+  @Enumerated(EnumType.STRING)
+  private Recommend recommend;
 
   @OneToMany(mappedBy="order", cascade=CascadeType.ALL, orphanRemoval = true, fetch=FetchType.LAZY)
   private List<OrderItem> orderItems = new ArrayList<>();
@@ -47,8 +53,8 @@ public class Order {
     order.setMember(member);
     order.setOrderDate(LocalDateTime.now());
     order.setStatus(Status.ORDER);
+    order.setRecommend(Recommend.LIKE);
     orderItemList.forEach(order::addOrderItem);
-
     return order;
   }
 
@@ -56,4 +62,5 @@ public class Order {
     this.status = Status.CANCEL;
     orderItems.forEach(OrderItem::cancel);;
   }
+
 }

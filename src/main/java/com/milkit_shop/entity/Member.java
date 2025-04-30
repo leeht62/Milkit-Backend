@@ -45,12 +45,12 @@ public class Member {
   private List<Comment> comments = new ArrayList<>();
 
   @JsonIgnore
-  @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-  private Cart cart;
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private List<Cart> carts = new ArrayList<>();
 
   @JsonIgnore
-  @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-  private Order order;
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private List<Order> orders = new ArrayList<>();
 
   @JsonIgnore
   @OneToMany(mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

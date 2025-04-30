@@ -9,11 +9,11 @@ import lombok.Setter;
 public class BoardReadDto {
   private String title;
   private String content;
-  private String memberEmail;
+  private String userCode;
 
   public BoardReadDto(Board board) {
     this.title = board.getTitle();
     this.content = board.getContent();
-    this.memberEmail = board.getMember() != null ? board.getMember().getEmail() : "탈퇴한 사용자";
+    this.userCode = board.getMember() != null ? board.getMember().getUserCode() : "탈퇴한 사용자";
   }
 }

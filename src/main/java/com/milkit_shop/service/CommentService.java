@@ -31,11 +31,10 @@ public class CommentService {
       commentDtoList.add(commentDto);
     }
     return commentDtoList;
-
   }
 
-  public CommentDto createComment(Long boardId,String email, CommentDto commentDto) {
-    Member member = memberRepository.findByEmail(email);
+  public CommentDto createComment(Long boardId,String userCode, CommentDto commentDto) {
+    Member member = memberRepository.findByUserCode(userCode);
     Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
     Comment comment = new Comment(commentDto);
     comment.addMember(member);
@@ -46,11 +45,10 @@ public class CommentService {
   }
 
   @Transactional
-  public void deleteComment(String email,Long commentId) {
+  public void deleteComment(String userCode,Long commentId) {
     Comment comment=commentRepository.findById(commentId).orElseThrow(EntityNotFoundException::new);
-    if (comment.getMember().getEmail().equals(email)){
+    if (comment.getMember().getUserCode().equals(userCode)){
       commentRepository.delete(comment);
     }
   }
-
 }

@@ -3,7 +3,6 @@ package com.milkit_shop.service;
 import com.milkit_shop.dto.ItemDto;
 import com.milkit_shop.entity.Item;
 import com.milkit_shop.repository.ItemRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,7 @@ public class ItemService {
     List<Item> existingItem = itemRepository.findByName(item.getName());
     if (existingItem.isEmpty()) {
       itemRepository.save(item);
-    }else{
+    } else {
       Item items = existingItem.get(0);
       item.setId(items.getId());
       itemRepository.save(item);
@@ -33,7 +32,7 @@ public class ItemService {
   public List<ItemDto> itemList() {
     List<Item> items = itemRepository.findAll();
     List<ItemDto> ItemDtoList = new ArrayList<>();
-    for(int i=0; i<items.size(); i++){
+    for (int i = 0; i < items.size(); i++){
       ItemDto mainDto = new ItemDto(items.get(i));
       ItemDtoList.add(mainDto);
     }
@@ -43,13 +42,10 @@ public class ItemService {
   public List<ItemDto> itemListSearch(String search) {
     List<Item> items = itemRepository.findItemsBySearch(search);
     List<ItemDto> ItemDtoList = new ArrayList<>();
-    for(int i=0; i<items.size(); i++){
+    for (int i = 0; i < items.size(); i++){
       ItemDto mainDto = new ItemDto(items.get(i));
       ItemDtoList.add(mainDto);
     }
     return ItemDtoList;
   }
-
-
-
 }

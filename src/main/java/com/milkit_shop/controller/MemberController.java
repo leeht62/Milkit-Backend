@@ -21,18 +21,18 @@ public class MemberController {
   @GetMapping("/loginOk")
   public ResponseEntity<Member> loginOk() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    String email = authentication.getName();
-    Member member = memberService.findMemberByEmail(email);
+    String userCode = authentication.getName();
+    Member member = memberService.findMemberByUserCode(userCode);
     if (member == null) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
-    System.out.println("로그인한 유저 이메일:" + email);
+    System.out.println("로그인한 유저 코드:" + userCode);
     return ResponseEntity.ok(member);
   }
 
   @PostMapping("/join")
   public ResponseEntity<Void> join(@RequestBody Member member) {
-    memberService.saveMember(member);
+    memberService.saveLocalMember(member);
     System.out.println("회원가입 요청 받은 MemberDto: " + member);
     System.out.println("회원가입 완료");
     return ResponseEntity.ok().build();

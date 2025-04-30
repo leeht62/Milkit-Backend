@@ -23,14 +23,14 @@ public class CommentController {
   }
   @PostMapping("/admin/{boardId}/comments")
   public ResponseEntity<CommentDto> createComment(@PathVariable Long boardId, Principal principal, @RequestBody CommentDto commentDto){
-    String email = principal.getName();
-    CommentDto commentDtos = commentService.createComment(boardId,email, commentDto);
+    String userCode = principal.getName();
+    CommentDto commentDtos = commentService.createComment(boardId,userCode, commentDto);
       return ResponseEntity.status(HttpStatus.CREATED).body(commentDtos);
   }
   @PatchMapping("/admin/{commentId}/deletecomment")
   public ResponseEntity<Void> deleteComment(@PathVariable Long commentId,Principal principal) {
-    String email = principal.getName();
-    commentService.deleteComment(email,commentId);
+    String userCode = principal.getName();
+    commentService.deleteComment(userCode,commentId);
     return ResponseEntity.ok(null);
   }
 

@@ -2,11 +2,9 @@ package com.milkit_shop.controller;
 
 import com.milkit_shop.dto.BoardDto;
 import com.milkit_shop.dto.BoardReadDto;
-import com.milkit_shop.entity.Board;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.service.BoardService;
 import com.milkit_shop.service.MemberService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,29 +33,29 @@ public class BoardController {
   }
   @PostMapping("/write")
   public ResponseEntity<BoardDto> create(@RequestBody BoardDto dto, Principal principal) {
-    String email = principal.getName();
-    BoardDto boardDto=boardService.createBoard(dto,email);
+    String userCode = principal.getName();
+    BoardDto boardDto=boardService.createBoard(dto,userCode);
     return ResponseEntity.status(HttpStatus.CREATED).body(boardDto);
   }
   @PatchMapping("/{boardId}/delete")
   public ResponseEntity<Void> delete(@PathVariable Long boardId,Principal principal) {
-    String email = principal.getName();
-    Member member=memberService.findMemberByEmail(email);
-    if(!boardService.duplicateBoard(boardId,email) && !member.getRole().name().equals("ROLE_ADMIN")) {
+    String userCode = principal.getName();
+    Member member = memberService.findMemberByUserCode(userCode);
+    if(!boardService.duplicateBoard(boardId,userCode) && !member.getRole().name().equals("ROLE_ADMIN")) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }else{
-      boardService.deleteBoard(boardId, email);
+      boardService.deleteBoard(boardId, userCode);
     }
     return ResponseEntity.ok(null);
   }
   @PutMapping("/{boardId}/modify")
   public ResponseEntity<Void> update(@PathVariable Long boardId,@RequestBody BoardDto dto,Principal principal) {
-    String email = principal.getName();
-    Member member=memberService.findMemberByEmail(email);
-    if(!boardService.duplicateBoard(boardId,email) && !member.getRole().name().equals("ROLE_ADMIN")) {
+    String userCode = principal.getName();
+    Member member=memberService.findMemberByUserCode(userCode);
+    if(!boardService.duplicateBoard(boardId, userCode) && !member.getRole().name().equals("ROLE_ADMIN")) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }else{
-      boardService.updateBoard(boardId,dto,email);
+      boardService.updateBoard(boardId,dto, userCode);
     }
     return ResponseEntity.ok(null);
   }

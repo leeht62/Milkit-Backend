@@ -15,7 +15,7 @@ public class BoardDto {
   private LocalDateTime date;
   private String title;
   private String content;
-  private String email;
+  private String userCode;
   private String name;
 
   public BoardDto(Board board) {
@@ -23,7 +23,7 @@ public class BoardDto {
     this.title = board.getTitle();
     this.content = board.getContent();
     this.date = board.getDate();
-    this.email = board.getMember() != null ? board.getMember().getEmail() : null;
+    this.userCode = board.getMember() != null ? board.getMember().getUserCode() : null;
     this.name =  board.getMember() != null ? board.getMember().getName() : "탈퇴한 사용자";
   }
 }

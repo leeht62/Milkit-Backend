@@ -10,7 +10,7 @@ public class OrderItemDto {
     this.name=orderItem.getItem().getName();
     this.count=orderItem.getCount();
     this.price=orderItem.getPrice();
-    this.image=orderItem.getImage();
+    this.image=orderItem.getItem().getImage();
   }
   private Long itemId;
 

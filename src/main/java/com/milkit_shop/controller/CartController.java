@@ -18,8 +18,8 @@ public class CartController {
     // 장바구니 조회
     @GetMapping("/cart")
     public ResponseEntity<CartDto> show(Principal principal) {
-        String email = principal.getName();
-        CartDto cartDto = cartService.getCart(email);
+        String userCode = principal.getName();
+        CartDto cartDto = cartService.getCart(userCode);
         return (cartDto != null) ?
                 ResponseEntity.ok(cartDto) :
                 ResponseEntity.badRequest().build();
@@ -28,8 +28,8 @@ public class CartController {
     // 장바구니에 상품 추가
     @PostMapping("/cart")
     public ResponseEntity<CartDto> add(@RequestBody @Valid CartItemDto cartItemDto, Principal principal) {
-        String email = principal.getName();
-        CartDto cartDto = cartService.addItem(cartItemDto, email);
+        String userCode = principal.getName();
+        CartDto cartDto = cartService.addItem(cartItemDto, userCode);
         return (cartDto != null) ?
                 ResponseEntity.ok(cartDto) :
                 ResponseEntity.badRequest().build();
@@ -39,8 +39,8 @@ public class CartController {
     // 1개일시 상품 제거
     @PatchMapping("/cart/{itemId}/decrease")
     public ResponseEntity<CartDto> decrease(@PathVariable Long itemId, Principal principal) {
-        String email = principal.getName();
-        CartDto cartDto = cartService.decreaseItemCount(itemId, email);
+        String userCode = principal.getName();
+        CartDto cartDto = cartService.decreaseItemCount(itemId, userCode);
         return (cartDto != null) ?
                 ResponseEntity.ok(cartDto) :
                 ResponseEntity.badRequest().build();
@@ -49,8 +49,8 @@ public class CartController {
     // 장바구니 상품 제거
     @DeleteMapping("/cart/{itemId}/delete")
     public ResponseEntity<CartDto> delete(@PathVariable Long itemId, Principal principal) {
-        String email = principal.getName();
-        CartDto cartDto = cartService.deleteItem(itemId, email);
+        String userCode = principal.getName();
+        CartDto cartDto = cartService.deleteItem(itemId, userCode);
         return (cartDto != null) ?
                 ResponseEntity.ok(cartDto) :
                 ResponseEntity.badRequest().build();

@@ -13,8 +13,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CartService {
     @Autowired
@@ -24,10 +22,10 @@ public class CartService {
     @Autowired
     private MemberService memberService;
 
-    public CartDto getCart (String email) {
-        Cart cart = cartRepository.findByEmail(email);
+    public CartDto getCart (String userCode) {
+        Cart cart = cartRepository.findByUserCode(userCode);
         if (cart == null) {
-            Member member = memberService.findMemberByEmail(email);
+            Member member = memberService.findMemberByUserCode(userCode);
             cart = cartRepository.save(Cart.createCart(member));
         }
 
@@ -35,10 +33,10 @@ public class CartService {
     }
 
     @Transactional
-    public CartDto addItem(CartItemDto cartItemDto, String email) {
-        Cart cart = cartRepository.findByEmail(email);
+    public CartDto addItem(CartItemDto cartItemDto, String userCode) {
+        Cart cart = cartRepository.findByUserCode(userCode);
         if (cart == null) {
-            Member member = memberService.findMemberByEmail(email);
+            Member member = memberService.findMemberByUserCode(userCode);
             cart = cartRepository.save(Cart.createCart(member));
         }
 
@@ -57,8 +55,8 @@ public class CartService {
     }
 
     @Transactional
-    public CartDto decreaseItemCount(Long itemId, String email) {
-        Cart cart = cartRepository.findByEmail(email);
+    public CartDto decreaseItemCount(Long itemId, String userCode) {
+        Cart cart = cartRepository.findByUserCode(userCode);
 
         CartItem cartItem = cart.findByItemId(itemId);
         if (cartItem == null) {
@@ -66,7 +64,7 @@ public class CartService {
         }
 
         if (cartItem.getCount() <= 1) {
-            return deleteItem(itemId, email);
+            return deleteItem(itemId, userCode);
         }
 
         cart.decreaseCartItemCount(cartItem);
@@ -74,8 +72,8 @@ public class CartService {
         return new CartDto(updated);
     }
 
-    public CartDto deleteItem(Long itemId, String email) {
-        Cart cart = cartRepository.findByEmail(email);
+    public CartDto deleteItem(Long itemId, String userCode) {
+        Cart cart = cartRepository.findByUserCode(userCode);
 
         CartItem cartItem = cart.findByItemId(itemId);
         if (cartItem == null) {

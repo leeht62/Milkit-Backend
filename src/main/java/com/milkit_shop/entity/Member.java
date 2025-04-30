@@ -41,4 +41,17 @@ public class Member {
   @JsonIgnore
   @OneToMany(mappedBy = "member")
   private List<Comment> comments = new ArrayList<>();
+
+  @JsonIgnore
+  @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private Cart cart;
+
+  @JsonIgnore
+  @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private Order order;
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private List<Address> addresses = new ArrayList<>();
+
 }

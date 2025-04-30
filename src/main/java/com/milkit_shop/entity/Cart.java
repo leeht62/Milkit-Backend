@@ -17,8 +17,7 @@ public class Cart {
     @GeneratedValue
     private Long id;
 
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToOne(fetch=FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 

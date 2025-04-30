@@ -23,9 +23,8 @@ public class Order {
   @Column(name = "order_id")
   private Long id;
 
-  @OnDelete(action = OnDeleteAction.CASCADE)
-  @ManyToOne(fetch=FetchType.LAZY)
-  @JoinColumn(name="member_id")
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "member_id")
   private Member member;
 
   @Column

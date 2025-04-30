@@ -3,6 +3,8 @@ package com.milkit_shop.entity;
 import com.milkit_shop.dto.AddressDto;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter

@@ -1,8 +1,13 @@
 package com.milkit_shop.controller;
 
+import com.milkit_shop.dto.KakaoUserInfoDto;
+import com.milkit_shop.dto.KakaoTokenResponseDto;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.service.MemberService;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -10,7 +15,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.List;
 
+
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class MemberController {
@@ -55,4 +64,27 @@ public class MemberController {
     return ResponseEntity.ok().build();
   }
 
+  @GetMapping("/oauth/login/callback")
+  public ResponseEntity<Void> oauthLoginCallback(@RequestParam String code, HttpSession session, HttpServletResponse response) throws IOException {
+    log.info("code=${}", code);
+
+    KakaoTokenResponseDto kakaoTokenResponseDto = memberService.getTokenFromKakao(code);
+    log.info("TokenResponseDto:={}", kakaoTokenResponseDto);
+
+    KakaoUserInfoDto kakaoUserInfoDto = memberService.getKakaoUserInfo(kakaoTokenResponseDto.getAccessToken());
+    log.info("kakaoUserInfoDto:={}", kakaoUserInfoDto);
+
+    Member member = memberService.saveKakaoOAuthMember(kakaoUserInfoDto);
+
+    memberService.login(member, session);
+
+    response.sendRedirect("http://localhost:3000/loginOk");
+    return ResponseEntity.ok().build();
+  }
+
+  @GetMapping("/admin/members")
+  public ResponseEntity<List<Member>> getAllMembers() {
+    List<Member> members = memberService.findAllMembers();
+    return ResponseEntity.ok(members);
+  }
 }

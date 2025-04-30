@@ -38,7 +38,7 @@ public class SecurityConfig implements AuthenticationFailureHandler, Authenticat
             .loginPage("/login")
             .loginProcessingUrl("/loginProc")
             .defaultSuccessUrl("/loginOk")
-            .usernameParameter("email")
+            .usernameParameter("userCode")
             .permitAll()
             .failureHandler(this)
         ).logout( authentication -> authentication

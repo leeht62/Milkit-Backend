@@ -19,12 +19,12 @@ public class MemberController {
   @GetMapping("/loginOk")
   public ResponseEntity<Member> loginOk() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    String email = authentication.getName();
-    Member member = memberService.findMemberByUserCode(email);
+    String userCode = authentication.getName();
+    Member member = memberService.findMemberByUserCode(userCode);
     if (member == null) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
-    System.out.println("로그인한 유저 이메일:" + email);
+    System.out.println("로그인한 유저 코드:" + userCode);
     return ResponseEntity.ok(member);
   }
 

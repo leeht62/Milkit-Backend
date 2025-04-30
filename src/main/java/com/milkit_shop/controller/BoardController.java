@@ -33,29 +33,29 @@ public class BoardController {
   }
   @PostMapping("/write")
   public ResponseEntity<BoardDto> create(@RequestBody BoardDto dto, Principal principal) {
-    String email = principal.getName();
-    BoardDto boardDto=boardService.createBoard(dto,email);
+    String userCode = principal.getName();
+    BoardDto boardDto=boardService.createBoard(dto,userCode);
     return ResponseEntity.status(HttpStatus.CREATED).body(boardDto);
   }
   @PatchMapping("/{boardId}/delete")
   public ResponseEntity<Void> delete(@PathVariable Long boardId,Principal principal) {
-    String email = principal.getName();
-    Member member=memberService.findMemberByUserCode(email);
-    if(!boardService.duplicateBoard(boardId,email) && !member.getRole().name().equals("ROLE_ADMIN")) {
+    String userCode = principal.getName();
+    Member member = memberService.findMemberByUserCode(userCode);
+    if(!boardService.duplicateBoard(boardId,userCode) && !member.getRole().name().equals("ROLE_ADMIN")) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }else{
-      boardService.deleteBoard(boardId, email);
+      boardService.deleteBoard(boardId, userCode);
     }
     return ResponseEntity.ok(null);
   }
   @PutMapping("/{boardId}/modify")
   public ResponseEntity<Void> update(@PathVariable Long boardId,@RequestBody BoardDto dto,Principal principal) {
-    String email = principal.getName();
-    Member member=memberService.findMemberByUserCode(email);
-    if(!boardService.duplicateBoard(boardId,email) && !member.getRole().name().equals("ROLE_ADMIN")) {
+    String userCode = principal.getName();
+    Member member=memberService.findMemberByUserCode(userCode);
+    if(!boardService.duplicateBoard(boardId, userCode) && !member.getRole().name().equals("ROLE_ADMIN")) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }else{
-      boardService.updateBoard(boardId,dto,email);
+      boardService.updateBoard(boardId,dto, userCode);
     }
     return ResponseEntity.ok(null);
   }

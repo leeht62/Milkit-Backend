@@ -17,8 +17,8 @@ public class AddressController {
 
     @GetMapping("/address")
     public ResponseEntity<List<AddressDto>> getList(Principal principal) {
-        String email = principal.getName();
-        List<AddressDto> addressDtos = addressService.getList(email);
+        String userCode = principal.getName();
+        List<AddressDto> addressDtos = addressService.getList(userCode);
         return (addressDtos != null) ?
                 ResponseEntity.ok(addressDtos) :
                 ResponseEntity.badRequest().build();
@@ -26,8 +26,8 @@ public class AddressController {
 
     @PostMapping("/address")
     public ResponseEntity<AddressDto> add(@RequestBody AddressDto dto, Principal principal) {
-        String email = principal.getName();
-        AddressDto addressDto = addressService.add(dto, email);
+        String userCode = principal.getName();
+        AddressDto addressDto = addressService.add(dto, userCode);
         return (addressDto != null) ?
                 ResponseEntity.status(HttpStatus.CREATED).body(addressDto) :
                 ResponseEntity.badRequest().build();
@@ -35,8 +35,8 @@ public class AddressController {
 
     @DeleteMapping("/address/{addressId}/delete")
     public ResponseEntity<Void> delete(@PathVariable Long addressId, Principal principal) {
-        String email = principal.getName();
-        boolean success = addressService.delete(addressId, email);
+        String userCode = principal.getName();
+        boolean success = addressService.delete(addressId, userCode);
         return success ?
                 ResponseEntity.ok(null) :
                 ResponseEntity.badRequest().build();

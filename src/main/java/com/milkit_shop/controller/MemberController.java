@@ -10,8 +10,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 
 @RestController
 @RequiredArgsConstructor
@@ -56,10 +54,5 @@ public class MemberController {
     memberService.deleteMember(member);
     return ResponseEntity.ok().build();
   }
-  @GetMapping("/admin/members")
-  public ResponseEntity<List<Member>> getAllMembers() {
-    List<Member> members = memberService.findAllMembers();
-    return ResponseEntity.ok(members);
-  }
 
-} 
+}

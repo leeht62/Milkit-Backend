@@ -35,8 +35,6 @@ public class Member {
   @Enumerated(EnumType.STRING)
   private LoginType loginType;
 
-  @Enumerated(EnumType.STRING)
-  private ItemStatus login;
 
   @JsonIgnore
   @OneToMany(mappedBy = "member")

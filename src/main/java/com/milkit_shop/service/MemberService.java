@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService{
@@ -58,5 +60,9 @@ public class MemberService{
   public Member findMemberById(Long id){
     return memberRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
+  }
+
+  public List<Member> findAllMembers() {
+    return memberRepository.findAll();
   }
 }

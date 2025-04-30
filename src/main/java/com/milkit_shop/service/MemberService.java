@@ -26,7 +26,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -35,13 +34,13 @@ public class MemberService{
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
   private final WebClient webClient = WebClient.create();;
 
-  @Value("kakao.client_id")
+  @Value("${kakao.client_id}")
   private String kakaoClientId;
 
-  @Value("kakao.redirect_uri")
+  @Value("${kakao.redirect_uri}")
   private String kakaoRedirectUri;
 
-  @Value("kakao.admin_key")
+  @Value("${kakao.admin_key}")
   private String kakaoAdminKey;
 
   public Member saveLocalMember(Member member){
@@ -95,7 +94,6 @@ public class MemberService{
               .retrieve()
               .bodyToMono(String.class)
               .block();
-      log.info("deletedKakaoUserId:{}", deletedUsername);
     }
 
     memberRepository.delete(member);

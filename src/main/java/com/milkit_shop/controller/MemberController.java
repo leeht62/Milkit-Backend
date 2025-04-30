@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class MemberController {
@@ -66,19 +64,13 @@ public class MemberController {
 
   @GetMapping("/oauth/login/callback")
   public ResponseEntity<Void> oauthLoginCallback(@RequestParam String code, HttpSession session, HttpServletResponse response) throws IOException {
-    log.info("code=${}", code);
 
     KakaoTokenResponseDto kakaoTokenResponseDto = memberService.getTokenFromKakao(code);
-    log.info("TokenResponseDto:={}", kakaoTokenResponseDto);
-
     KakaoUserInfoDto kakaoUserInfoDto = memberService.getKakaoUserInfo(kakaoTokenResponseDto.getAccessToken());
-    log.info("kakaoUserInfoDto:={}", kakaoUserInfoDto);
 
     Member member = memberService.saveKakaoOAuthMember(kakaoUserInfoDto);
-
     memberService.login(member, session);
 
-    response.sendRedirect("http://localhost:3000/loginOk");
     return ResponseEntity.ok().build();
   }
 

@@ -1,5 +1,7 @@
 package com.milkit_shop.service;
 
+import com.milkit_shop.constant.ItemStatus;
+import com.milkit_shop.constant.Recommend;
 import com.milkit_shop.dto.OrderDto;
 import com.milkit_shop.dto.OrderHistDto;
 import com.milkit_shop.dto.OrderItemDto;
@@ -82,6 +84,7 @@ public class OrderService {
       }
       orderHistDtos.add(orderHistDto);
     }
+
     return orderHistDtos;
   }
 
@@ -90,7 +93,8 @@ public class OrderService {
     Order order = orderRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
     order.cancelOrder();
-
     orderRepository.delete(order);
   }
+
+
 }

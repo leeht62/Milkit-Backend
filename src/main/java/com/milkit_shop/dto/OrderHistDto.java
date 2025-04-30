@@ -1,5 +1,6 @@
 package com.milkit_shop.dto;
 
+import com.milkit_shop.constant.Recommend;
 import com.milkit_shop.constant.Status;
 import com.milkit_shop.entity.Order;
 import lombok.Getter;
@@ -15,11 +16,12 @@ public class OrderHistDto {
     this.orderId=order.getId();
     this.orderDate=order.getOrderDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     this.status=order.getStatus();
-
+    this.recommend=order.getRecommend();
   }
   private Long orderId;
   private String orderDate;
   private Status status;
+  private Recommend recommend;
 
   private List<OrderItemDto> orderItemDtoList=new ArrayList<>();
   public void addOrderItemDto(OrderItemDto orderItemDto){

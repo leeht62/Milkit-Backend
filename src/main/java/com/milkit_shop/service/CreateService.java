@@ -19,8 +19,7 @@ public class CreateService {
 
   @PostConstruct
   public void initCreateMock() {
-
-      Member AdminMember=createMember("관리자","admin@naver.com","123456789a!");
+    Member AdminMember = createMember("관리자","admin","123456789a!");
     Item item1 = createItem("부대찌개" , "/kit1.jpg","부대찌개입니다.",10000,5,Category.SOUP,SubCategory.JJIGAE,ItemStatus.NEW);
     Item item2 = createItem("김치찌개" , "/kimchi.jpg","김치찌개입니다.",15000,5,Category.SOUP,SubCategory.JJIGAE,ItemStatus.NEW);
     Item item3 = createItem("된장찌개" , "/dwon.jpg","된장찌개입니다.",9000,5,Category.SOUP,SubCategory.JJIGAE,ItemStatus.NEW);
@@ -75,11 +74,11 @@ public class CreateService {
     item.setItemStatus(itemStatus);
     return item;
   }
-  private Member createMember(String name, String email, String password){
+  private Member createMember(String name, String userCode, String password){
     Member member=new Member();
     member.setName(name);
     member.setPassword(password);
-    member.setEmail(email);
+    member.setUserCode(userCode);
     return member;
   }
 

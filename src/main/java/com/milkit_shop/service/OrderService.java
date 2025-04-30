@@ -7,13 +7,11 @@ import com.milkit_shop.entity.Item;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.entity.Order;
 import com.milkit_shop.entity.OrderItem;
-import com.milkit_shop.exception.OutOfStockException;
 import com.milkit_shop.repository.ItemRepository;
 import com.milkit_shop.repository.MemberRepository;
 import com.milkit_shop.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,14 +24,13 @@ import java.util.List;
 public class OrderService {
   private final ItemRepository itemRepository;
   private final MemberRepository memberRepository;
-  @Autowired
-  private OrderRepository orderRepository;
+  private final OrderRepository orderRepository;
 
   @Transactional
-  public OrderHistDto order(OrderDto orderDto, String email){
-    Item item=itemRepository.findById(orderDto.getId())
+  public OrderHistDto order(OrderDto orderDto, String userCode){
+    Item item = itemRepository.findById(orderDto.getId())
         .orElseThrow(EntityNotFoundException::new);
-    Member member = memberRepository.findByEmail(email);
+    Member member = memberRepository.findByUserCode(userCode);
 
     List<OrderItem> orderItemList = new ArrayList<>();
     orderItemList.add(OrderItem.createOrderItem(item,orderDto.getCount()));
@@ -49,8 +46,8 @@ public class OrderService {
   }
 
   @Transactional
-  public OrderHistDto order(List<OrderDto> orderDtos, String email){
-    Member member = memberRepository.findByEmail(email);
+  public OrderHistDto order(List<OrderDto> orderDtos, String userCode){
+    Member member = memberRepository.findByUserCode(userCode);
 
     List<OrderItem> orderItemList = new ArrayList<>();
 
@@ -73,14 +70,14 @@ public class OrderService {
   }
 
   @Transactional
-  public List<OrderHistDto> orderList(String email) {
-    List<Order> orders= orderRepository.findOrders(email);
-    List<OrderHistDto> orderHistDtos=new ArrayList<>();
+  public List<OrderHistDto> orderList(String userCode) {
+    List<Order> orders = orderRepository.findOrders(userCode);
+    List<OrderHistDto> orderHistDtos = new ArrayList<>();
     for(Order order : orders){
-      OrderHistDto orderHistDto=new OrderHistDto(order);
+      OrderHistDto orderHistDto = new OrderHistDto(order);
       List<OrderItem> orderItemList =order.getOrderItems();
       for(OrderItem orderItem : orderItemList) {
-        OrderItemDto orderItemDto=new OrderItemDto(orderItem);
+        OrderItemDto orderItemDto = new OrderItemDto(orderItem);
         orderHistDto.addOrderItemDto(orderItemDto);
       }
       orderHistDtos.add(orderHistDto);

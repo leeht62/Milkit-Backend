@@ -20,7 +20,7 @@ public class MemberController {
   public ResponseEntity<Member> loginOk() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     String email = authentication.getName();
-    Member member = memberService.findMemberByEmail(email);
+    Member member = memberService.findMemberByUserCode(email);
     if (member == null) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
@@ -30,7 +30,7 @@ public class MemberController {
 
   @PostMapping("/join")
   public ResponseEntity<Void> join(@RequestBody Member member) {
-    memberService.saveMember(member);
+    memberService.saveLocalMember(member);
     System.out.println("회원가입 요청 받은 MemberDto: " + member);
     System.out.println("회원가입 완료");
     return ResponseEntity.ok().build();

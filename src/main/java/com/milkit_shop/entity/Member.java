@@ -2,6 +2,7 @@ package com.milkit_shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.milkit_shop.constant.ItemStatus;
+import com.milkit_shop.constant.LoginType;
 import com.milkit_shop.constant.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,15 +22,18 @@ public class Member {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  private String name;
-
   @Column(unique=true)
-  private String email;
+  private String userCode;
 
   private String password;
 
+  private String name;
+
   @Enumerated(EnumType.STRING)
   private Role role;
+
+  @Enumerated(EnumType.STRING)
+  private LoginType loginType;
 
   @Enumerated(EnumType.STRING)
   private ItemStatus login;

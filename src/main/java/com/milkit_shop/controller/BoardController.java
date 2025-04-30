@@ -2,11 +2,9 @@ package com.milkit_shop.controller;
 
 import com.milkit_shop.dto.BoardDto;
 import com.milkit_shop.dto.BoardReadDto;
-import com.milkit_shop.entity.Board;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.service.BoardService;
 import com.milkit_shop.service.MemberService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +40,7 @@ public class BoardController {
   @PatchMapping("/{boardId}/delete")
   public ResponseEntity<Void> delete(@PathVariable Long boardId,Principal principal) {
     String email = principal.getName();
-    Member member=memberService.findMemberByEmail(email);
+    Member member=memberService.findMemberByUserCode(email);
     if(!boardService.duplicateBoard(boardId,email) && !member.getRole().name().equals("ROLE_ADMIN")) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }else{
@@ -53,7 +51,7 @@ public class BoardController {
   @PutMapping("/{boardId}/modify")
   public ResponseEntity<Void> update(@PathVariable Long boardId,@RequestBody BoardDto dto,Principal principal) {
     String email = principal.getName();
-    Member member=memberService.findMemberByEmail(email);
+    Member member=memberService.findMemberByUserCode(email);
     if(!boardService.duplicateBoard(boardId,email) && !member.getRole().name().equals("ROLE_ADMIN")) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }else{

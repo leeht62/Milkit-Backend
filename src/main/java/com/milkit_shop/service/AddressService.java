@@ -17,9 +17,8 @@ public class AddressService {
     @Autowired
     private MemberService memberService;
 
-
-    public List<AddressDto> getList(String email) {
-        List<Address> addressList = addressRepository.findAllByEmail(email);
+    public List<AddressDto> getList(String userCode) {
+        List<Address> addressList = addressRepository.findAllByUserCode(userCode);
         List<AddressDto> addressDtos = new ArrayList<>();
         for (Address address: addressList) {
             addressDtos.add(new AddressDto(address));
@@ -28,17 +27,16 @@ public class AddressService {
         return addressDtos;
     }
 
-    public AddressDto add(AddressDto dto, String email) {
-        Member member = memberService.findMemberByEmail(email);
+    public AddressDto add(AddressDto dto, String userCode) {
+        Member member = memberService.findMemberByUserCode(userCode);
 
-//        Address address = new Address(dto, member);
         Address address = Address.createAddress(dto, member);
         Address saved = addressRepository.save(address);
         return new AddressDto(saved);
     }
 
-    public boolean delete(Long addressId, String email) {
-        Member member = memberService.findMemberByEmail(email);
+    public boolean delete(Long addressId, String userCode) {
+        Member member = memberService.findMemberByUserCode(userCode);
 
         Address address = addressRepository.findById(addressId).orElse(null);
 

@@ -1,9 +1,8 @@
 package com.milkit_shop.service;
 
-import com.milkit_shop.constant.ItemStatus;
+import com.milkit_shop.constant.LoginType;
 import com.milkit_shop.constant.Role;
 import com.milkit_shop.entity.Member;
-import com.milkit_shop.repository.CartRepository;
 import com.milkit_shop.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -14,37 +13,39 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberService{
   private final MemberRepository memberRepository;
-  private final CartRepository cartRepository;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  public Member saveMember(Member member){
+  public Member saveLocalMember(Member member){
     Duplicate(member);
     String password=member.getPassword();
     String encPassword=bCryptPasswordEncoder.encode(password);
     member.setPassword(encPassword);
     member.setRole(Role.USER);
+    member.setLoginType(LoginType.LOCAL);
     return memberRepository.save(member);
   }
 
-  public Member findMemberByEmail(String email){
-    return memberRepository.findByEmail(email);
+  public Member findMemberByUserCode(String userCode){
+    return memberRepository.findByUserCode(userCode);
   }
+
   private void Duplicate(Member member){
-    Member memberemail=memberRepository.findByEmail(member.getEmail());
-    if(memberemail!=null){
+    Member existingMember = memberRepository.findByUserCode(member.getUserCode());
+    if(existingMember != null){
       throw new IllegalStateException("이미 가입된 회원입니다.");
     }
   }
 
   public Member saveAdminMember(Member member){
-    String password=member.getPassword();
+    String password = member.getPassword();
     String encPassword=bCryptPasswordEncoder.encode(password);
     member.setPassword(encPassword);
     member.setRole(Role.ROLE_ADMIN);
-    Member exist = memberRepository.findByEmail("admin@naver.com");
-    if(exist==null) {
+    member.setLoginType(LoginType.LOCAL);
+    Member exist = memberRepository.findByUserCode("admin");
+    if(exist == null) {
       memberRepository.save(member);
-    }else{
+    } else {
       System.out.println("멤버가 이미 존재합니다.");
     }
     return member;
@@ -58,10 +59,4 @@ public class MemberService{
     return memberRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
   }
-
-
-
-
-
-
 }

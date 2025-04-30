@@ -20,6 +20,7 @@ public class BoardService {
   private final BoardRepository boardRepository;
   private final MemberRepository memberRepository;
   private final MemberService memberService;
+
   public List<BoardDto> getBoard() {
     List<Board> boards = boardRepository.findAllBoards();
     List<BoardDto> BoardDtoList = new ArrayList<>();
@@ -40,39 +41,41 @@ public class BoardService {
     return BoardDtoList;
   }
 
-  public BoardDto createBoard(BoardDto boardDto, String email) {
-    Member member = memberRepository.findByEmail(email);
+  public BoardDto createBoard(BoardDto boardDto, String userCode) {
+    Member member = memberRepository.findByUserCode(userCode);
     Board board = new Board(boardDto);
     board.addMember(member);
     boardRepository.save(board);
     BoardDto boardDtos = new BoardDto(board);
     return boardDtos;
   }
+
   @Transactional
-  public void updateBoard(Long boardId, BoardDto boardDto, String email) {
+  public void updateBoard(Long boardId, BoardDto boardDto, String userCode) {
     Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
-    Member member=memberService.findMemberByEmail(email);
-    if (board.getMember().getEmail().equals(email) || member.getRole().name().equals("ROLE_ADMIN")){
+    Member member = memberService.findMemberByUserCode(userCode);
+    if (board.getMember().getUserCode().equals(userCode) || member.getRole().name().equals("ROLE_ADMIN")){
       board.update(boardDto);
     }
   }
+
   @Transactional
-  public void deleteBoard(Long id,String email) {
+  public void deleteBoard(Long id,String userCode) {
     Board board = boardRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-    Member member=memberService.findMemberByEmail(email);
-    if (board.getMember().getEmail().equals(email) || member.getRole().name().equals("ROLE_ADMIN")){
+    Member member=memberService.findMemberByUserCode(userCode);
+    if (board.getMember().getUserCode().equals(userCode) || member.getRole().name().equals("ROLE_ADMIN")){
       boardRepository.deleteById(id);
     }
   }
+
   public BoardReadDto ReadBoard(Long boardId) {
     Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
     BoardReadDto boardReadDto = new BoardReadDto(board);
     return boardReadDto;
   }
-  public boolean duplicateBoard(Long id,String email){
+
+  public boolean duplicateBoard(Long id, String userCode){
     Board board = boardRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-    return board.getMember().getEmail().equals(email);
+    return board.getMember().getUserCode().equals(userCode);
   }
-
-
 }

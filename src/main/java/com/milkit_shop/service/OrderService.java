@@ -124,5 +124,10 @@ public class OrderService {
     Order order=orderRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     order.setDelivery(Delivery.DONE);
   }
+  @Transactional
+  public void DeliveryReturn(Long id){
+    Order order=orderRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    order.setDelivery(Delivery.RETURN);
+  }
 
 }

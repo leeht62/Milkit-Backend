@@ -73,5 +73,10 @@ public class OrderController {
         orderService.DeliveryDone(id);
         return ResponseEntity.ok(null);
     }
+    @PostMapping("/admin/{id}/return")
+    public ResponseEntity<Void> adminOrderReturn(@PathVariable Long id){
+        orderService.DeliveryReturn(id);
+        return ResponseEntity.ok(null);
+    }
 
 }

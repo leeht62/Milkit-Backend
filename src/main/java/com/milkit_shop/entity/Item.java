@@ -42,7 +42,7 @@ public class Item {
   private ItemStatus itemStatus;
 
   public void updateItemStatus() {
-    this.itemStatus = this.stockNumber <= 3 ? ItemStatus.BEST : ItemStatus.NEW;
+    this.itemStatus = this.stockNumber <= 4 ? ItemStatus.BEST : ItemStatus.NEW;
     if (this.itemStatus == ItemStatus.NEW) {
       this.price -= 1000;
     }else{

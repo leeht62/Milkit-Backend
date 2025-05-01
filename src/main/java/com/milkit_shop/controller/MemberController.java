@@ -70,9 +70,10 @@ public class MemberController {
 
     Member member = memberService.saveKakaoOAuthMember(kakaoUserInfoDto);
     memberService.login(member, session);
-
+    response.sendRedirect("http://localhost:3000/main");
     return ResponseEntity.ok().build();
   }
+
 
   @GetMapping("/admin/members")
   public ResponseEntity<List<Member>> getAllMembers() {

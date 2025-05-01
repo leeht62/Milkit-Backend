@@ -1,5 +1,6 @@
 package com.milkit_shop.service;
 
+import com.milkit_shop.constant.Delivery;
 import com.milkit_shop.constant.ItemStatus;
 import com.milkit_shop.constant.Recommend;
 import com.milkit_shop.dto.OrderDto;
@@ -96,5 +97,32 @@ public class OrderService {
     orderRepository.delete(order);
   }
 
+  @Transactional
+  public List<OrderHistDto> getAllOrders(){
+    List<Order> orders= orderRepository.findAll();
+    List<OrderHistDto> orderHistDtos = new ArrayList<>();
+    for(Order order : orders){
+      OrderHistDto orderHistDto = new OrderHistDto(order);
+      List<OrderItem> orderItemList =order.getOrderItems();
+      for(OrderItem orderItem : orderItemList) {
+        OrderItemDto orderItemDto = new OrderItemDto(orderItem);
+        orderHistDto.addOrderItemDto(orderItemDto);
+      }
+      orderHistDtos.add(orderHistDto);
+    }
+
+    return orderHistDtos;
+  }
+
+  @Transactional
+  public void DeliveryGo(Long id){
+    Order order=orderRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    order.setDelivery(Delivery.GO);
+  }
+  @Transactional
+  public void DeliveryDone(Long id){
+    Order order=orderRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    order.setDelivery(Delivery.DONE);
+  }
 
 }

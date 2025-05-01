@@ -17,11 +17,13 @@ public class OrderHistDto {
     this.orderDate=order.getOrderDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     this.status=order.getStatus();
     this.recommend=order.getRecommend();
+    this.memberId=order.getMember().getId();
   }
   private Long orderId;
   private String orderDate;
   private Status status;
   private Recommend recommend;
+  private int memberId;
 
   private List<OrderItemDto> orderItemDtoList=new ArrayList<>();
   public void addOrderItemDto(OrderItemDto orderItemDto){

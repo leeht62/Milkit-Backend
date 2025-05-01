@@ -79,4 +79,10 @@ public class MemberController {
     List<Member> members = memberService.findAllMembers();
     return ResponseEntity.ok(members);
   }
+  @PostMapping("/admin/{id}/deleteMember")
+  public ResponseEntity<Void> adminDelete(@PathVariable Long id){
+    Member member=memberService.findMemberById(id);
+    memberService.deleteMember(member);
+    return ResponseEntity.ok().build();
+  }
 }

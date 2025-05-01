@@ -59,4 +59,19 @@ public class OrderController {
         orderService.cancelOrder(id);
         return ResponseEntity.ok(null);
     }
+    @GetMapping("/admin/orders")
+    public ResponseEntity<List<OrderHistDto>> adminOrders(){
+        return ResponseEntity.ok(orderService.getAllOrders());
+    }
+    @PostMapping("/admin/{id}/ordergo")
+    public ResponseEntity<Void> adminOrderGo(@PathVariable Long id){
+        orderService.DeliveryGo(id);
+        return ResponseEntity.ok(null);
+    }
+    @PostMapping("/admin/{id}/orderdone")
+    public ResponseEntity<Void> adminOrderDone(@PathVariable Long id){
+        orderService.DeliveryDone(id);
+        return ResponseEntity.ok(null);
+    }
+
 }

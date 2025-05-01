@@ -1,5 +1,6 @@
 package com.milkit_shop.entity;
 
+import com.milkit_shop.constant.Delivery;
 import com.milkit_shop.constant.ItemStatus;
 import com.milkit_shop.constant.Recommend;
 import com.milkit_shop.constant.Status;
@@ -40,6 +41,10 @@ public class Order {
   @Enumerated(EnumType.STRING)
   private Recommend recommend;
 
+  @Column
+  @Enumerated(EnumType.STRING)
+  private Delivery delivery;
+
   @OneToMany(mappedBy="order", cascade=CascadeType.ALL, orphanRemoval = true, fetch=FetchType.LAZY)
   private List<OrderItem> orderItems = new ArrayList<>();
 
@@ -52,6 +57,7 @@ public class Order {
     Order order = new Order();
     order.setMember(member);
     order.setOrderDate(LocalDateTime.now());
+    order.setDelivery(Delivery.NOT);
     order.setStatus(Status.ORDER);
     order.setRecommend(Recommend.LIKE);
     orderItemList.forEach(order::addOrderItem);

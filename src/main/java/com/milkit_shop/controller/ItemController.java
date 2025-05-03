@@ -15,13 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/items")
 @RequiredArgsConstructor
 public class ItemController {
   private final ItemService itemService;
 
-
-  @GetMapping("/list")
+  @GetMapping("/items/list")
   public ResponseEntity<List<ItemDto>> getAllItems(@RequestParam(value = "search", required = false) String search) {
     List<ItemDto> itemList = itemService.itemList();
     if (search == null){
@@ -32,7 +30,7 @@ public class ItemController {
   }
 
   // 단일 상품 조회
-  @GetMapping(value="/item/{itemId}")
+/*  @GetMapping(value="/item/{itemId}")
   public ResponseEntity<?> getItem(@PathVariable("itemId") Long itemId){
     try {
       ItemFormDto itemFormDto = itemService.getItem(itemId);
@@ -40,7 +38,7 @@ public class ItemController {
     } catch(EntityNotFoundException e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
     }
-  }
+  }*/
 
   // 상품 등록
   @PostMapping(value="/admin/item/new", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -55,7 +53,7 @@ public class ItemController {
   }
 
   // 상품 수정
-  @PutMapping(value="/admin/item/{itemId}")
+/*  @PutMapping(value="/admin/item/{itemId}")
   public ResponseEntity<?> updateItem(@RequestPart("itemFormDto") ItemFormDto itemFormDto, @RequestPart("itemImgFile") List<MultipartFile> itemImgFileList) {
     try {
       Long updatedItemId = itemService.updateItem(itemFormDto,itemImgFileList);
@@ -63,10 +61,10 @@ public class ItemController {
     } catch(Exception e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
     }
-  }
+  }*/
 
   // 상품 삭제
-  @DeleteMapping(value="/admin/item/{itemId}")
+/*  @DeleteMapping(value="/admin/item/{itemId}")
   public ResponseEntity<?> deleteItem(@PathVariable("itemId") Long itemId) {
     try {
       itemService.deleteItem(itemId);
@@ -74,5 +72,5 @@ public class ItemController {
     } catch(Exception e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
     }
-  }
+  }*/
 }

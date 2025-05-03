@@ -4,11 +4,17 @@ import com.milkit_shop.constant.Category;
 import com.milkit_shop.constant.ItemStatus;
 import com.milkit_shop.constant.SubCategory;
 import com.milkit_shop.entity.Item;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
 public class ItemFormDto {
 
   private Long id;

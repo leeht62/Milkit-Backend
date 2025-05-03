@@ -28,7 +28,7 @@ public class ItemDto {
     this.content = item.getContent();
     this.price = item.getPrice();
     this.image=item.getImage();
-    this.stock=item.getStockNumber();
+    this.stock=item.getStock();
     this.category=item.getCategory();
     this.subCategory=item.getSubcategory();
     this.itemStatus=item.getItemStatus();

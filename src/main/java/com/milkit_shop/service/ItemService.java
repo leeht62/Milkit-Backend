@@ -6,6 +6,7 @@ import com.milkit_shop.entity.Item;
 import com.milkit_shop.entity.ItemImg;
 import com.milkit_shop.repository.ItemImgRepository;
 import com.milkit_shop.repository.ItemRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,4 +71,27 @@ public class ItemService {
     }
     return item.getId();
   }
+
+  public Long updateItem(ItemFormDto itemFormDto,List<MultipartFile> itemImgFileList) throws
+      Exception{
+    Item item=itemRepository.findById(itemFormDto.getId())
+        .orElseThrow(EntityNotFoundException::new);
+    item.updateItem(itemFormDto);
+
+    List<Long> itemImgIds=itemFormDto.getItemImgIds();
+
+    System.out.println("itemImgIds = " + itemImgIds);
+    System.out.println("itemImgFileList = " + itemImgFileList.stream().map(MultipartFile::getOriginalFilename).toList());
+
+    for(int i=0;i<itemImgFileList.size();i++){
+      itemImgService.updateItemImg(itemImgIds.get(i),itemImgFileList.get(i));
+    }
+
+    return item.getId();
+  }
+  public void deleteItem(Long id){
+    Item item=itemRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    itemRepository.delete(item);
+  }
+
 }

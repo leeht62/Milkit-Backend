@@ -1,6 +1,5 @@
 package com.milkit_shop.service;
 
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +13,7 @@ public class FileService {
   public String uploadFile(String uploadPath,String originalFileName,
                            byte[] fileData) throws Exception{
     UUID uuid= UUID.randomUUID();
-    String extension=originalFileName.substring(originalFileName.lastIndexOf("."))
-        ;
+    String extension=originalFileName.substring(originalFileName.lastIndexOf("."));
     String savedFileName=uuid.toString()+extension;
     String fileUploadFullUrl = uploadPath+"/"+savedFileName;
     FileOutputStream fos=new FileOutputStream(fileUploadFullUrl);

@@ -5,6 +5,7 @@ import com.milkit_shop.dto.ItemFormDto;
 import com.milkit_shop.service.ItemService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class ItemController {
   private final ItemService itemService;
 
@@ -46,6 +48,7 @@ public class ItemController {
 
     try {
       Long createdItemId = itemService.saveItem(itemFormDto,itemImgFileList);
+      log.info("받은 stock 값: {}", itemFormDto.getStock());
       return ResponseEntity.status(HttpStatus.CREATED).body(createdItemId);
     } catch(Exception e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
@@ -53,18 +56,19 @@ public class ItemController {
   }
 
   // 상품 수정
-/*  @PutMapping(value="/admin/item/{itemId}")
-  public ResponseEntity<?> updateItem(@RequestPart("itemFormDto") ItemFormDto itemFormDto, @RequestPart("itemImgFile") List<MultipartFile> itemImgFileList) {
+  @PutMapping(value="/admin/item/{itemId}/update")
+  public ResponseEntity<?> updateItem(@PathVariable("itemId") Long itemId, @RequestPart("itemFormDto") ItemFormDto itemFormDto, @RequestPart("itemImgFile") List<MultipartFile> itemImgFileList) {
     try {
-      Long updatedItemId = itemService.updateItem(itemFormDto,itemImgFileList);
-      return ResponseEntity.ok(updatedItemId);
+      itemService.updateItem(itemFormDto,itemImgFileList);
+      return ResponseEntity.ok(itemId);
     } catch(Exception e){
+
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
     }
-  }*/
+  }
 
   // 상품 삭제
-/*  @DeleteMapping(value="/admin/item/{itemId}")
+  @DeleteMapping(value="/admin/item/{itemId}/delete")
   public ResponseEntity<?> deleteItem(@PathVariable("itemId") Long itemId) {
     try {
       itemService.deleteItem(itemId);
@@ -72,5 +76,5 @@ public class ItemController {
     } catch(Exception e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
     }
-  }*/
+  }
 }

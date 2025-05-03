@@ -24,7 +24,7 @@ public class CartItemDto {
     public CartItemDto(CartItem cartItem) {
         this.itemId = cartItem.getItem().getId();
         this.count = cartItem.getCount();
-        this.stock = cartItem.getItem().getStockNumber();
+        this.stock = cartItem.getItem().getStock();
         this.image = cartItem.getItem().getImage();
     }
 }

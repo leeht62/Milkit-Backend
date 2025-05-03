@@ -68,7 +68,7 @@ public class CreateService {
     item.setImage(image);
     item.setContent(content);
     item.setPrice(price);
-    item.setStockNumber(stock);
+    item.setStock(stock);
     item.setCategory(category);
     item.setSubcategory(subCategory);
     item.setItemStatus(itemStatus);

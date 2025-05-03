@@ -48,7 +48,7 @@ public class ItemController {
 
     try {
       Long createdItemId = itemService.saveItem(itemFormDto,itemImgFileList);
-      log.info("받은 stock 값: {}", itemFormDto.getStock());
+      log.info("받은 stock 값: {}", itemFormDto.getItemImgDtoList());
       return ResponseEntity.status(HttpStatus.CREATED).body(createdItemId);
     } catch(Exception e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));

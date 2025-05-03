@@ -68,6 +68,7 @@ public class ItemService {
       else
         itemImg.setRepimgYn("N");
       itemImgService.saveItemImg(itemImg, itemImgFileList.get(i));
+      item.setImage(itemImg.getImgUrl());
     }
     return item.getId();
   }

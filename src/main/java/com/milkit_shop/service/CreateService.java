@@ -23,7 +23,7 @@ public class CreateService {
     Item item1 = createItem("부대찌개" , "/kit1.jpg","부대찌개입니다.",10000,5,Category.SOUP,SubCategory.JJIGAE,ItemStatus.NEW);
     Item item2 = createItem("김치찌개" , "/kimchi.jpg","김치찌개입니다.",15000,5,Category.SOUP,SubCategory.JJIGAE,ItemStatus.NEW);
     Item item3 = createItem("된장찌개" , "/dwon.jpg","된장찌개입니다.",9000,5,Category.SOUP,SubCategory.JJIGAE,ItemStatus.NEW);
-    Item item4 = createItem("초밥" , "/Sushi.jpg","초밥입니다.",10000,5,Category.ROAST,SubCategory.SUSHI,ItemStatus.NEW);
+    Item item4 = createItem("초밥" , "/Sushi.jpg","초밥입니다.",10000,5,Category.JFOOD,SubCategory.SUSHI,ItemStatus.NEW);
     Item item5 = createItem("감자튀김" , "/french.jpg","감자튀김입니다.",3000,5,Category.ROAST,SubCategory.FRIED,ItemStatus.NEW);
     Item item6 = createItem("고구마튀김" , "/french.jpg","고구마튀김입니다.",4000,5,Category.ROAST,SubCategory.FRIED,ItemStatus.NEW);
     Item item7 = createItem("해산물토마토파스타", "/seatomatopasta.jpg", "해산물이 들어간 토마토 파스타입니다.", 13000, 5, Category.PASTA, SubCategory.Noodle,ItemStatus.NEW);

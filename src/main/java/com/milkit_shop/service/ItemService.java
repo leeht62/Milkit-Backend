@@ -80,9 +80,13 @@ public class ItemService {
     item.updateItem(itemFormDto);
 
     List<Long> itemImgIds=itemFormDto.getItemImgIds();
-
     for(int i=0;i<itemImgFileList.size();i++){
       itemImgService.updateItemImg(itemImgIds.get(i),itemImgFileList.get(i));
+      ItemImg itemImg =itemImgRepository.findById(itemImgIds.get(i))
+          .orElseThrow(EntityNotFoundException::new);
+      if (i == 0) {
+        item.setImage(itemImg.getImgUrl());
+      }
     }
 
     return item.getId();

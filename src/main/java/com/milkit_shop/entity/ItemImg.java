@@ -1,3 +1,4 @@
+
 package com.milkit_shop.entity;
 import jakarta.persistence.*;
 import lombok.Getter;

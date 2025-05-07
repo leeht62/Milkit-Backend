@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ai")
@@ -41,17 +39,15 @@ public class AiController {
     Map<String, Object> params = new HashMap<>();
     params.put("chat", food);
     params.put("database", finddatabase.getContentAsString(Charset.defaultCharset()));
-    // GPT 프롬프트 생성
-    List<Item> items = itemRepository.findAll(); // 예시: 모든 상품 조회
+    List<Item> items = itemRepository.findAll();
 
-    // 2. 상품 목록을 GPT가 이해할 수 있는 형식으로 변환
     StringBuilder foodListText = new StringBuilder();
     for (Item item : items) {
       foodListText.append("- ").append(item.getName()).append(": ").append(item.getContent()).append("\n");
     }
 
-    // 3. '김치'와 어울리는 제품을 추천하도록 GPT에게 전달할 프롬프트 작성
-    String prompt = food + "와 관련된 식품 3가지를 추천해주세요. 아래는 다양한 음식 목록입니다:\n" +
+    String prompt = food + "와 관련된 식품 3가지를 추천해주세요. 목록에 없는 음식은 절대 포함하지 마세요.\n" +
+        "아래는 다양한 음식 목록입니다:\n" +
         foodListText.toString() +
         "위 목록에서 "+food+"와 잘 어울리는 음식 3가지를 각각 하나씩 독립적으로 추천해 주세요. 각 추천 항목은 다음과 같은 형식으로 작성해 주세요: 1. 음식이름: 설명(※ 음식이름은 반드시 하나의 음식만 작성해 주세요. 두 개 이상 조합하지 마세요.)";
 
@@ -68,21 +64,24 @@ public class AiController {
 
     String[] responseLines = response.split("\n");
 
-    // 응답에서 음식 리스트를 추출하거나 필터링
     List<Map<String, Object>> recommendedFoods = new ArrayList<>();
+    Set<String> validItemNames = items.stream()
+        .map(Item::getName)
+        .collect(Collectors.toSet());
+
     for (String line : responseLines) {
-      if (line.contains(":")) {  // 각 음식이 ":"를 포함하는 라인인 경우 음식 목록으로 간주
+      if (line.contains(":")) {
         String[] foodInfo = line.split(":");
         if (foodInfo.length == 2) {
           String name = foodInfo[0].trim().replaceAll("^[0-9]+\\.\\s*", "");
           String description = foodInfo[1].trim();
 
-          // Map을 생성하여 이름과 설명을 담기
-          Map<String, Object> foodMap = new HashMap<>();
-          foodMap.put("name", name);
-          foodMap.put("description", description);
-
-          recommendedFoods.add(foodMap);
+          if (validItemNames.contains(name)) {
+            Map<String, Object> foodMap = new HashMap<>();
+            foodMap.put("name", name);
+            foodMap.put("description", description);
+            recommendedFoods.add(foodMap);
+          }
         }
       }
     }

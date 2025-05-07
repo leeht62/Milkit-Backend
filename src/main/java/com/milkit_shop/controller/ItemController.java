@@ -3,7 +3,6 @@ package com.milkit_shop.controller;
 import com.milkit_shop.dto.ItemDto;
 import com.milkit_shop.dto.ItemFormDto;
 import com.milkit_shop.service.ItemService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

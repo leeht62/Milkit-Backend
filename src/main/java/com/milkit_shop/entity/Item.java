@@ -36,6 +36,8 @@ public class Item {
 
   private String content;
 
+  private String subcontent;
+
   @Enumerated(EnumType.STRING)
   private Category category;
 

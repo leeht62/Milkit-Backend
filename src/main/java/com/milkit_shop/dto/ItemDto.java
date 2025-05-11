@@ -15,12 +15,14 @@ public class ItemDto {
   private String name;
   private String image;
   private String content;
+  private String subcontent;
 
   private int price;
   private int stock;
   private Category category;
   private SubCategory subCategory;
   private ItemStatus itemStatus;
+
 
 
   public ItemDto(Item item) {

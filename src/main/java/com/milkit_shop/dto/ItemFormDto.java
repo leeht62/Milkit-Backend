@@ -21,6 +21,7 @@ public class ItemFormDto {
   private String name;
   private Integer price;
   private String content;
+  private String subcontent;
   private int stock;
   private ItemStatus itemStatus;
   private Category category;

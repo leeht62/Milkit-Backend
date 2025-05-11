@@ -15,6 +15,7 @@ public class ItemDto {
   private String name;
   private String image;
   private String content;
+
   private int price;
   private int stock;
   private Category category;
@@ -32,5 +33,6 @@ public class ItemDto {
     this.category=item.getCategory();
     this.subCategory=item.getSubcategory();
     this.itemStatus=item.getItemStatus();
+
   }
 }

@@ -51,11 +51,11 @@ public class CreateService {
       Item item28 = createItem("에비텐", "/image28.jpg", "에비텐 입니다.", "신선한 대하를 바삭한 튀김옷에 감싸 고온에서 튀겨낸 일본식 새우튀김입니다. 탱글탱글한 새우살과 바삭한 식감이 조화를 이루며, 튀김소스나 간장에 살짝 찍어 먹으면 더욱 맛이 살아납니다.", 6000, 5, Category.JFOOD, SubCategory.JFRIED, ItemStatus.NEW);
       Item item29 = createItem("사바 간장구이", "/image29.jpg", "사바 간장구이 입니다.", "기름기 좋은 고등어를 달짝지근한 간장소스에 졸여내듯 구워낸 요리입니다. 살이 부드럽고 진한 감칠맛이 배어 있어 밥반찬으로도 손색이 없습니다. 레몬 한 조각과 함께 곁들이면 더욱 담백하게 즐길 수 있습니다.", 9500, 5, Category.JFOOD, SubCategory.FISH, ItemStatus.NEW);
       Item item30 = createItem("츠케모노", "/image30.jpg", "츠케모노 입니다.", "무, 오이, 가지 등 다양한 채소를 소금과 식초, 다시 등에 절여 만든 일본 전통 반찬입니다. 아삭하고 새콤한 맛이 입맛을 돋우며, 느끼한 음식과 함께 먹으면 깔끔한 밸런스를 유지해줍니다.", 3000, 10, Category.JFOOD, SubCategory.REST, ItemStatus.NEW);
-      Item item31 = createItem("연어 초밥", "/image31.jpg", "연어 초밥 입니다.", "신선한 연어를 두툼하게 썰어 쫀득한 초밥 위에 얹은 메뉴입니다. 기름진 연어의 고소한 풍미가 입안 가득 퍼지며, 부드러운 밥과의 조화가 일품입니다.", 11000, 5, Category.JFOOD, SubCategory.FISH, ItemStatus.NEW);
-      Item item32 = createItem("참치 초밥", "/image32.jpg", "참치 초밥 입니다.", "부드럽고 담백한 참치살을 사용한 대표적인 초밥입니다. 적당한 두께로 썰어내어 밥과 함께 즐기면 담백함과 고소함이 입안에 맴도는 정통 스시입니다.", 11500, 5, Category.JFOOD, SubCategory.FISH, ItemStatus.NEW);
-      Item item33 = createItem("장어 초밥", "/image33.jpg", "장어 초밥 입니다.", "달콤한 간장 양념에 구운 부드러운 장어를 올린 초밥입니다. 입안에서 녹는 듯한 장어와 달짝지근한 소스가 조화를 이루어 깊은 풍미를 전합니다.", 13000, 5, Category.JFOOD, SubCategory.FISH, ItemStatus.NEW);
-      Item item34 = createItem("새우 초밥", "/image34.jpg", "새우 초밥 입니다.", "탱글한 식감의 새우를 살짝 익혀 밥 위에 올린 새우 초밥입니다. 단맛이 도는 새우의 풍미와 쫀득한 밥이 어우러져 누구나 부담 없이 즐길 수 있습니다.", 10500, 5, Category.JFOOD, SubCategory.FISH, ItemStatus.NEW);
-      Item item35 = createItem("계란 초밥", "/image35.jpg", "계란 초밥 입니다.", "달콤하게 조리된 일본식 계란말이를 밥 위에 얹은 계란 초밥입니다. 부드러운 계란의 식감과 달짝지근한 맛이 특징으로, 어린이나 초밥 입문자에게 인기가 많습니다.", 9500, 5, Category.JFOOD, SubCategory.FISH, ItemStatus.NEW);
+      Item item31 = createItem("연어 초밥", "/image31.jpg", "연어 초밥 입니다.", "신선한 연어를 두툼하게 썰어 쫀득한 초밥 위에 얹은 메뉴입니다. 기름진 연어의 고소한 풍미가 입안 가득 퍼지며, 부드러운 밥과의 조화가 일품입니다.", 11000, 5, Category.JFOOD, SubCategory.SUSHI, ItemStatus.NEW);
+      Item item32 = createItem("참치 초밥", "/image32.jpg", "참치 초밥 입니다.", "부드럽고 담백한 참치살을 사용한 대표적인 초밥입니다. 적당한 두께로 썰어내어 밥과 함께 즐기면 담백함과 고소함이 입안에 맴도는 정통 스시입니다.", 11500, 5, Category.JFOOD, SubCategory.SUSHI, ItemStatus.NEW);
+      Item item33 = createItem("장어 초밥", "/image33.jpg", "장어 초밥 입니다.", "달콤한 간장 양념에 구운 부드러운 장어를 올린 초밥입니다. 입안에서 녹는 듯한 장어와 달짝지근한 소스가 조화를 이루어 깊은 풍미를 전합니다.", 13000, 5, Category.JFOOD, SubCategory.SUSHI, ItemStatus.NEW);
+      Item item34 = createItem("새우 초밥", "/image34.jpg", "새우 초밥 입니다.", "탱글한 식감의 새우를 살짝 익혀 밥 위에 올린 새우 초밥입니다. 단맛이 도는 새우의 풍미와 쫀득한 밥이 어우러져 누구나 부담 없이 즐길 수 있습니다.", 10500, 5, Category.JFOOD, SubCategory.SUSHI, ItemStatus.NEW);
+      Item item35 = createItem("계란 초밥", "/image35.jpg", "계란 초밥 입니다.", "달콤하게 조리된 일본식 계란말이를 밥 위에 얹은 계란 초밥입니다. 부드러운 계란의 식감과 달짝지근한 맛이 특징으로, 어린이나 초밥 입문자에게 인기가 많습니다.", 9500, 5, Category.JFOOD, SubCategory.SUSHI, ItemStatus.NEW);
       itemService.saveItem(item1);
       itemService.saveItem(item2);
       itemService.saveItem(item3);

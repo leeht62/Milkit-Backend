@@ -20,7 +20,6 @@ public class CreateService {
   @PostConstruct
   public void initCreateMock() {
     Member AdminMember = createMember("관리자","admin","123456789a!");
-    if (itemService.itemList().isEmpty()) {
       Item item1 = createItem("부대찌개", "/kit1.jpg", "부대찌개 입니다.", "다양한 햄과 소시지, 두부, 채소, 라면사리 등을 고추장 베이스 육수에 푹 끓여낸 얼큰하고 푸짐한 부대찌개입니다. 진한 국물맛과 풍성한 재료가 조화를 이루며, 한국식 퓨전 전골의 진수를 맛볼 수 있습니다.", 10000, 5, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
       Item item2 = createItem("김치찌개", "/kimchi.jpg", "김치찌개 입니다.", "잘 익은 김치를 베이스로 돼지고기, 두부, 대파 등을 넣어 얼큰하게 끓여낸 한국 전통 찌개입니다. 깊고 진한 국물 맛과 칼칼한 매운맛이 특징이며, 밥과 함께 먹으면 궁합이 뛰어납니다.", 15000, 5, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
       Item item3 = createItem("된장찌개", "/dwon.jpg", "된장찌개 입니다.", "한국 전통 된장을 베이스로 애호박, 두부, 버섯 등 다양한 채소를 넣고 끓여낸 구수한 된장찌개입니다. 담백하면서도 깊은 맛이 있으며, 한국인의 입맛에 친숙한 대표적인 집밥 메뉴입니다.", 9000, 5, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
@@ -92,9 +91,10 @@ public class CreateService {
       itemService.saveItem(item33);
       itemService.saveItem(item34);
       itemService.saveItem(item35);
-    }
     memberService.saveAdminMember(AdminMember);
-  }
+    }
+
+
 
   private Item createItem(String name, String image, String content,String subcontent, int price, int stock, Category category, SubCategory subCategory, ItemStatus itemStatus) {
     Item item=new Item();

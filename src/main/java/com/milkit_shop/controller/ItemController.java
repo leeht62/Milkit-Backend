@@ -35,8 +35,7 @@ public class ItemController {
   public ResponseEntity<?> createItem(@RequestPart("itemFormDto") ItemFormDto itemFormDto, @RequestPart("itemImgFile") List<MultipartFile> itemImgFileList) throws Exception {
 
     try {
-      Long createdItemId = itemService.saveItem(itemFormDto,itemImgFileList);
-      log.info("받은 stock 값: {}", itemFormDto.getItemImgDtoList());
+      Long createdItemId = itemService.saveItem(itemFormDto,itemImgFileList.getFirst());
       return ResponseEntity.status(HttpStatus.CREATED).body(createdItemId);
     } catch(Exception e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
@@ -47,7 +46,7 @@ public class ItemController {
   @PutMapping(value="/admin/item/{itemId}/update")
   public ResponseEntity<?> updateItem(@PathVariable("itemId") Long itemId, @RequestPart("itemFormDto") ItemFormDto itemFormDto, @RequestPart("itemImgFile") List<MultipartFile> itemImgFileList) {
     try {
-      itemService.updateItem(itemId,itemFormDto,itemImgFileList);
+      itemService.updateItem(itemId,itemFormDto,itemImgFileList.getFirst());
       return ResponseEntity.ok(itemId);
     } catch(Exception e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));

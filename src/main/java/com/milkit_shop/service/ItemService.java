@@ -57,23 +57,19 @@ public class ItemService {
   }
 
 
-  public Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception{
+  public Long saveItem(ItemFormDto itemFormDto, MultipartFile itemImgFile) throws Exception{
     Item item = itemFormDto.createItem();
     itemRepository.save(item);
-    for(int i=0;i<itemImgFileList.size();i++){
-      ItemImg itemImg = new ItemImg();
-      itemImg.setItem(item);
-      if(i == 0)
-        itemImg.setRepimgYn("Y");
-      else
-        itemImg.setRepimgYn("N");
-      itemImgService.saveItemImg(itemImg, itemImgFileList.get(i));
-      item.setImage(itemImg.getImgUrl());
-    }
+
+    ItemImg itemImg = new ItemImg();
+    itemImg.setItem(item);
+    itemImgService.saveItemImg(itemImg, itemImgFile);
+    item.setImage(itemImg.getImgUrl());
+
     return item.getId();
   }
 
-  public Long updateItem(Long id,ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws
+  public Long updateItem(Long id,ItemFormDto itemFormDto, MultipartFile itemImgFile) throws
       Exception{
     Item item = itemRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
@@ -81,7 +77,7 @@ public class ItemService {
 
     Long itemImgId = item.getItemImgs().getFirst().getId();
 
-    itemImgService.updateItemImg(itemImgId,itemImgFileList.get(i));
+    itemImgService.updateItemImg(itemImgId,itemImgFile);
     ItemImg itemImg = itemImgRepository.findById(itemImgId)
             .orElseThrow(EntityNotFoundException::new);
     item.setImage(itemImg.getImgUrl());

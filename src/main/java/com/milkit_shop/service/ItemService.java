@@ -91,8 +91,10 @@ public class ItemService {
 
     return item.getId();
   }
+
   public void deleteItem(Long id){
-    Item item=itemRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    Item item = itemRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    itemImgService.deleteItemImg(item.getItemImgs().getFirst().getId());
     itemRepository.delete(item);
   }
 

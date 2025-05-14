@@ -30,17 +30,6 @@ public class ItemController {
     }
   }
 
-  // 단일 상품 조회
-/*  @GetMapping(value="/item/{itemId}")
-  public ResponseEntity<?> getItem(@PathVariable("itemId") Long itemId){
-    try {
-      ItemFormDto itemFormDto = itemService.getItem(itemId);
-      return ResponseEntity.ok(itemFormDto);
-    } catch(EntityNotFoundException e){
-      return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
-    }
-  }*/
-
   // 상품 등록
   @PostMapping(value="/admin/item/new", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public ResponseEntity<?> createItem(@RequestPart("itemFormDto") ItemFormDto itemFormDto, @RequestPart("itemImgFile") List<MultipartFile> itemImgFileList) throws Exception {

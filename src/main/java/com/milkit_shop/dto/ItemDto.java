@@ -35,6 +35,6 @@ public class ItemDto {
     this.category=item.getCategory();
     this.subCategory=item.getSubcategory();
     this.itemStatus=item.getItemStatus();
-
+    this.subcontent = item.getSubcontent();
   }
 }

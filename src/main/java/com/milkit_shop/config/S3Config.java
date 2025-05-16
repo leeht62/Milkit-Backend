@@ -18,7 +18,7 @@ public class S3Config {
         return AmazonS3ClientBuilder
             .standard()
             .withRegion(region)
-            .withCredentials(DefaultAWSCredentialsProviderChain.getInstance()) // 이 부분 중요!
+            .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
             .build();
     }
 }

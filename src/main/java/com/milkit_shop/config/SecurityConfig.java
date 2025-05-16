@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.AuthenticationException;
@@ -19,6 +20,8 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.io.IOException;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig implements AuthenticationFailureHandler, AuthenticationEntryPoint {
@@ -28,27 +31,27 @@ public class SecurityConfig implements AuthenticationFailureHandler, Authenticat
   }
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http, CorsFilter corsFilter) throws Exception{
-   return  http.csrf(authentication -> authentication.disable())
-       .addFilterBefore(corsFilter, ChannelProcessingFilter.class)
-        .authorizeHttpRequests((authentication) -> authentication
-            .requestMatchers("/user/**").authenticated()
-            .requestMatchers("/admin/**").hasRole("ADMIN")
-            .anyRequest().permitAll()
-        ).formLogin((authentication) -> authentication
-            .loginPage("/login")
-            .loginProcessingUrl("/loginProc")
-            .defaultSuccessUrl("/loginOk")
-            .usernameParameter("userCode")
-            .permitAll()
-            .failureHandler(this)
-        ).logout( authentication -> authentication
-           .logoutUrl("/logout")
-            .logoutSuccessUrl("/logoutOk")
-            .deleteCookies("JSESSIONID")
-        ).exceptionHandling(e -> e
-            .authenticationEntryPoint(this)
-        ).csrf(authentication -> authentication.disable())
-        .build();
+    return  http.cors(withDefaults()).csrf(authentication -> authentication.disable())
+            .addFilterBefore(corsFilter, ChannelProcessingFilter.class)
+            .authorizeHttpRequests((authentication) -> authentication
+                    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    .requestMatchers("/user/**").authenticated()
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .anyRequest().permitAll()
+            ).formLogin((authentication) -> authentication
+                    .loginPage("/login")
+                    .loginProcessingUrl("/loginProc")
+                    .defaultSuccessUrl("/loginOk")
+                    .usernameParameter("userCode")
+                    .permitAll()
+                    .failureHandler(this)
+            ).logout( authentication -> authentication
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/logoutOk")
+                    .deleteCookies("JSESSIONID")
+            ).exceptionHandling(e -> e
+                    .authenticationEntryPoint(this)
+            ).build();
   }
   @Override
   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
@@ -62,14 +65,15 @@ public class SecurityConfig implements AuthenticationFailureHandler, Authenticat
   public CorsFilter corsFilter() {
     CorsConfiguration config = new CorsConfiguration();
     config.setAllowCredentials(true);
-    config.addAllowedOrigin("http://bugifood.shop");
+    config.addAllowedOriginPattern("http://bugifood.shop");
+    config.addAllowedOriginPattern("http://www.bugifood.shop");
+    config.addAllowedOriginPattern("https://bugifood.shop");
+    config.addAllowedOriginPattern("https://www.bugifood.shop");
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", config);
     return new CorsFilter(source);
   }
-
-
-
 }
+

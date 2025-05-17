@@ -70,7 +70,7 @@ public class MemberController {
 
     Member member = memberService.saveKakaoOAuthMember(kakaoUserInfoDto);
     memberService.login(member, session);
-    response.sendRedirect("http://localhost:3000");
+    response.sendRedirect("http://bugifood.shop");
     return ResponseEntity.ok().build();
   }
 

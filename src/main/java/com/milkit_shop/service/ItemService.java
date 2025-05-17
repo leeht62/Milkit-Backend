@@ -75,12 +75,18 @@ public class ItemService {
         .orElseThrow(EntityNotFoundException::new);
     item.updateItem(itemFormDto);
 
-    Long itemImgId = item.getItemImgs().getFirst().getId();
-
-    itemImgService.updateItemImg(itemImgId,itemImgFile);
-    ItemImg itemImg = itemImgRepository.findById(itemImgId)
-            .orElseThrow(EntityNotFoundException::new);
-    item.setImage(itemImg.getImgUrl());
+    if (item.getItemImgs() == null || item.getItemImgs().isEmpty()) {
+      ItemImg newImg = new ItemImg();
+      newImg.setItem(item);
+      itemImgService.saveItemImg(newImg, itemImgFile);
+      item.setImage(newImg.getImgUrl());
+    } else {
+      Long itemImgId = item.getItemImgs().get(0).getId();
+      itemImgService.updateItemImg(itemImgId, itemImgFile);
+      ItemImg updatedImg = itemImgRepository.findById(itemImgId)
+          .orElseThrow(EntityNotFoundException::new);
+      item.setImage(updatedImg.getImgUrl());
+    }
 
     return item.getId();
   }

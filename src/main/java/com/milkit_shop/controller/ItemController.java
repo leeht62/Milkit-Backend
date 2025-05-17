@@ -46,7 +46,10 @@ public class ItemController {
   @PutMapping(value="/admin/item/{itemId}/update")
   public ResponseEntity<?> updateItem(@PathVariable("itemId") Long itemId, @RequestPart("itemFormDto") ItemFormDto itemFormDto, @RequestPart(value = "itemImgFile", required = false) List<MultipartFile> itemImgFileList) {
     try {
-      itemService.updateItem(itemId,itemFormDto,itemImgFileList.getFirst());
+      MultipartFile imageFile = (itemImgFileList != null && !itemImgFileList.isEmpty())
+          ? itemImgFileList.get(0)
+          : null;
+      itemService.updateItem(itemId,itemFormDto,imageFile);
       return ResponseEntity.ok(itemId);
     } catch(Exception e){
       return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));

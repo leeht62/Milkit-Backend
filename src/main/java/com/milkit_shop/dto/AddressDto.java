@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AddressDto {
-    private Long;
+    private Long addressId;
 
     private String address;
 

@@ -21,4 +21,4 @@ public class S3Config {
             .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
             .build();
     }
-}
+}//

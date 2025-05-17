@@ -13,7 +13,6 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
 
-
 import java.io.IOException;
 import java.util.UUID;
 
@@ -47,7 +46,6 @@ public class S3Service {
         PutObjectRequest request = PutObjectRequest.builder()
             .bucket(bucketName)
             .key(newName)
-            .acl(ObjectCannedACL.PUBLIC_READ)
             .contentType(img.getContentType())
             .build();
 

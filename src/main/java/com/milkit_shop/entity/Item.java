@@ -51,8 +51,8 @@ public class Item {
   private List<ItemImg> itemImgs = new ArrayList<>();
 
   public void updateItemStatus() {
-    this.itemStatus = ItemStatus.BEST;
-    if (this.itemStatus == ItemStatus.BEST) {
+    if (this.itemStatus == ItemStatus.NEW) {
+      this.itemStatus = ItemStatus.BEST;
       this.price += 1000;
     }
   }

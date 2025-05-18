@@ -10,6 +10,7 @@ import com.milkit_shop.entity.Item;
 import com.milkit_shop.entity.Member;
 import com.milkit_shop.entity.Order;
 import com.milkit_shop.entity.OrderItem;
+import com.milkit_shop.exception.OrderCancelFailureException;
 import com.milkit_shop.repository.ItemRepository;
 import com.milkit_shop.repository.MemberRepository;
 import com.milkit_shop.repository.OrderRepository;
@@ -93,8 +94,12 @@ public class OrderService {
   public void cancelOrder(Long id) {
     Order order = orderRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
-    order.cancelOrder();
-    orderRepository.delete(order);
+    if (order.getDelivery().equals(Delivery.NOT)) {
+      order.cancelOrder();
+      orderRepository.delete(order);
+    } else {
+      throw new OrderCancelFailureException("주문 취소 불가능한 배송 상태");
+    }
   }
 
   @Transactional

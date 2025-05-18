@@ -54,14 +54,15 @@ public class OrderController {
         }
     }
 
-    @PatchMapping("/order/{id}/cancel")
-    public ResponseEntity<Void> cancel(@PathVariable Long id) {
-        orderService.cancelOrder(id);
-        return ResponseEntity.ok(null);
-    }
     @GetMapping("/admin/orders")
     public ResponseEntity<List<OrderHistDto>> adminOrders(){
         return ResponseEntity.ok(orderService.getAllOrders());
+    }
+
+    @PatchMapping("admin/{id}/ordercancel")
+    public ResponseEntity<Void> adminOrderCancel(@PathVariable Long id) {
+        orderService.cancelOrder(id);
+        return ResponseEntity.ok(null);
     }
     @PostMapping("/admin/{id}/ordergo")
     public ResponseEntity<Void> adminOrderGo(@PathVariable Long id){

@@ -4,6 +4,7 @@ import com.milkit_shop.constant.Delivery;
 import com.milkit_shop.constant.ItemStatus;
 import com.milkit_shop.constant.Recommend;
 import com.milkit_shop.constant.Status;
+import com.milkit_shop.exception.DeliveryStatusChangeUnableException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -69,4 +70,9 @@ public class Order {
     orderItems.forEach(OrderItem::cancel);;
   }
 
+  public void deliveryStatusCheck() {
+    if (status.equals(Status.CANCEL)) {
+      throw new DeliveryStatusChangeUnableException("배송 상태 변경 불가능한 주문 상태");
+    }
+  }
 }

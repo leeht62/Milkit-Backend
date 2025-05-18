@@ -51,10 +51,8 @@ public class Item {
   private List<ItemImg> itemImgs = new ArrayList<>();
 
   public void updateItemStatus() {
-    this.itemStatus = this.stock <= 4 ? ItemStatus.BEST : ItemStatus.NEW;
-    if (this.itemStatus == ItemStatus.NEW) {
-      this.price -= 1000;
-    }else{
+    this.itemStatus = ItemStatus.BEST;
+    if (this.itemStatus == ItemStatus.BEST) {
       this.price += 1000;
     }
   }
@@ -80,5 +78,6 @@ public class Item {
     this.category=itemFormDto.getCategory();
     this.subcategory=itemFormDto.getSubCategory();
   }
+
 
 }

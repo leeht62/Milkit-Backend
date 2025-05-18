@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -74,15 +75,23 @@ public class MemberController {
     return ResponseEntity.ok().build();
   }
 
-
   @GetMapping("/admin/members")
   public ResponseEntity<List<Member>> getAllMembers() {
     List<Member> members = memberService.findAllMembers();
     return ResponseEntity.ok(members);
   }
+
   @PostMapping("/admin/{id}/deleteMember")
   public ResponseEntity<Void> adminDelete(@PathVariable Long id){
-    Member member=memberService.findMemberById(id);
+    Member member = memberService.findMemberById(id);
+    memberService.deleteMember(member);
+    return ResponseEntity.ok().build();
+  }
+
+  @DeleteMapping("/deleteMember")
+  public ResponseEntity<Void> selfDelete(Principal principal){
+    String userCode = principal.getName();
+    Member member = memberService.findMemberByUserCode(userCode);
     memberService.deleteMember(member);
     return ResponseEntity.ok().build();
   }

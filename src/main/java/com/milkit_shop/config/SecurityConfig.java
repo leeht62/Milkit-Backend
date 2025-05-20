@@ -65,8 +65,6 @@ public class SecurityConfig implements AuthenticationFailureHandler, Authenticat
   public CorsFilter corsFilter() {
     CorsConfiguration config = new CorsConfiguration();
     config.setAllowCredentials(true);
-    config.addAllowedOriginPattern("http://bugifood.shop");
-    config.addAllowedOriginPattern("http://www.bugifood.shop");
     config.addAllowedOriginPattern("https://bugifood.shop");
     config.addAllowedOriginPattern("https://www.bugifood.shop");
     config.addAllowedHeader("*");

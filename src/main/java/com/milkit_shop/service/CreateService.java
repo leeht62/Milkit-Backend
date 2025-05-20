@@ -55,7 +55,18 @@ public class CreateService {
       Item item33 = createItem("장어 초밥", "/image33.jpg", "장어 초밥 입니다.", "달콤한 간장 양념에 구운 부드러운 장어를 올린 초밥입니다. 입안에서 녹는 듯한 장어와 달짝지근한 소스가 조화를 이루어 깊은 풍미를 전합니다.", 13000, 5, Category.JFOOD, SubCategory.SUSHI, ItemStatus.NEW);
       Item item34 = createItem("새우 초밥", "/image34.jpg", "새우 초밥 입니다.", "탱글한 식감의 새우를 살짝 익혀 밥 위에 올린 새우 초밥입니다. 단맛이 도는 새우의 풍미와 쫀득한 밥이 어우러져 누구나 부담 없이 즐길 수 있습니다.", 10500, 5, Category.JFOOD, SubCategory.SUSHI, ItemStatus.NEW);
       Item item35 = createItem("계란 초밥", "/image35.jpg", "계란 초밥 입니다.", "달콤하게 조리된 일본식 계란말이를 밥 위에 얹은 계란 초밥입니다. 부드러운 계란의 식감과 달짝지근한 맛이 특징으로, 어린이나 초밥 입문자에게 인기가 많습니다.", 9500, 5, Category.JFOOD, SubCategory.SUSHI, ItemStatus.NEW);
-      itemService.saveItem(item1);
+      Item item36 = createItem("불닭발", "/image36.jpg", "불닭발입니다.", "매콤한 양념에 쫄깃한 닭발을 볶아낸 불닭발입니다. 불향과 고추기름의 얼얼한 매운맛이 어우러져 술안주로 제격입니다.", 11000, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item37 = createItem("마늘 간장 꼬치", "/image37.jpg", "마늘 간장 꼬치입니다.", "간장과 마늘로 양념된 닭꼬치를 직화로 구워낸 마늘 간장 꼬치입니다. 달짝지근하고 불향이 가득해 맥주와 잘 어울립니다.", 10000, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item38 = createItem("오돌뼈 볶음", "/image38.jpg", "오돌뼈 볶음입니다.", "쫄깃한 돼지 오돌뼈를 매콤한 양념으로 볶아낸 오돌뼈 볶음입니다. 감칠맛과 매운맛이 어우러져 중독성 있는 안주입니다.", 10500, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item39 = createItem("모둠튀김", "/image39.jpg", "모둠튀김입니다.", "새우, 오징어, 고구마 등 다양한 재료를 바삭하게 튀겨낸 모둠튀김입니다. 기름지지 않고 담백한 튀김으로 소주와 궁합이 뛰어납니다.", 9900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item40 = createItem("치즈불닭", "/image40.jpg", "치즈불닭입니다.", "매콤한 불닭 위에 고소한 치즈를 듬뿍 올려 오븐에 구워낸 치즈불닭입니다. 맵고 고소한 맛의 조화가 일품입니다.", 11500, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item41 = createItem("제육볶음", "/image49.jpg", "제육볶음입니다.", "매콤한 고추장 양념에 돼지고기를 볶아낸 제육볶음입니다. 고기와 양파, 대파의 조화로 술안주와 밥반찬으로 모두 훌륭합니다.", 10900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item42 = createItem("명란 계란말이", "/image42.jpg", "명란 계란말이입니다.", "짭짤한 명란을 부드러운 계란 속에 넣어 만든 명란 계란말이입니다. 은은한 감칠맛과 촉촉한 식감이 매력적입니다.", 9700, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
+      Item item43 = createItem("순살 양념닭강정", "/image43.jpg", "순살 양념닭강정입니다.", "한입 크기의 순살 치킨에 달콤매콤한 양념을 입힌 닭강정입니다. 바삭함과 양념의 조화가 뛰어난 인기 안주입니다.", 10800, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item44 = createItem("골뱅이 무침", "/image44.jpg", "골뱅이 무침입니다.", "쫄깃한 골뱅이에 채 썬 야채와 매콤새콤한 양념을 더해 무쳐낸 골뱅이 무침입니다. 시원한 맥주와 잘 어울리는 대표 안주입니다.", 10200, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
+      Item item45 = createItem("참치 마요 주먹밥", "/image45.jpg", "참치 마요 주먹밥입니다.", "한입 크기의 주먹밥에 참치와 마요네즈를 넣어 만든 간단하고 든든한 안주입니다. 맥주와도 잘 어울립니다.", 9300, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
+
+    itemService.saveItem(item1);
       itemService.saveItem(item2);
       itemService.saveItem(item3);
       itemService.saveItem(item4);
@@ -91,6 +102,16 @@ public class CreateService {
       itemService.saveItem(item33);
       itemService.saveItem(item34);
       itemService.saveItem(item35);
+      itemService.saveItem(item36);
+      itemService.saveItem(item37);
+      itemService.saveItem(item38);
+      itemService.saveItem(item39);
+      itemService.saveItem(item40);
+      itemService.saveItem(item41);
+      itemService.saveItem(item42);
+      itemService.saveItem(item43);
+      itemService.saveItem(item44);
+      itemService.saveItem(item45);
     memberService.saveAdminMember(AdminMember);
     }
 

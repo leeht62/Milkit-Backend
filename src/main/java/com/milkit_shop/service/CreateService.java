@@ -64,7 +64,7 @@ public class CreateService {
       Item item42 = createItem("명란 계란말이", "/image42.jpg", "명란 계란말이입니다.", "짭짤한 명란을 부드러운 계란 속에 넣어 만든 명란 계란말이입니다. 은은한 감칠맛과 촉촉한 식감이 매력적입니다.", 9700, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
       Item item43 = createItem("순살 양념닭강정", "/image43.jpg", "순살 양념닭강정입니다.", "한입 크기의 순살 치킨에 달콤매콤한 양념을 입힌 닭강정입니다. 바삭함과 양념의 조화가 뛰어난 인기 안주입니다.", 10800, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
       Item item44 = createItem("골뱅이 무침", "/image44.jpg", "골뱅이 무침입니다.", "쫄깃한 골뱅이에 채 썬 야채와 매콤새콤한 양념을 더해 무쳐낸 골뱅이 무침입니다. 시원한 맥주와 잘 어울리는 대표 안주입니다.", 10200, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
-      Item item45 = createItem("참치 마요 주먹밥", "/image45.jpg", "참치 마요 주먹밥입니다.", "한입 크기의 주먹밥에 참치와 마요네즈를 넣어 만든 간단하고 든든한 안주입니다. 맥주와도 잘 어울립니다.", 9300, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
+      Item item45 = createItem("간장 마늘 치킨", "/image50.jpg", "간장 마늘 치킨입니다.", "달콤짭짤한 간장 소스에 마늘향을 더해 바삭하게 튀긴 닭에 버무린 간장 마늘 치킨입니다. 부드러운 육질과 풍부한 맛이 특징입니다.", 11900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
 
     itemService.saveItem(item1);
       itemService.saveItem(item2);

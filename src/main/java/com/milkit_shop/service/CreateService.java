@@ -65,6 +65,37 @@ public class CreateService {
       Item item43 = createItem("순살 양념닭강정", "/image43.jpg", "순살 양념닭강정입니다.", "한입 크기의 순살 치킨에 달콤매콤한 양념을 입힌 닭강정입니다. 바삭함과 양념의 조화가 뛰어난 인기 안주입니다.", 10800, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
       Item item44 = createItem("골뱅이 무침", "/image44.jpg", "골뱅이 무침입니다.", "쫄깃한 골뱅이에 채 썬 야채와 매콤새콤한 양념을 더해 무쳐낸 골뱅이 무침입니다. 시원한 맥주와 잘 어울리는 대표 안주입니다.", 10200, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
       Item item45 = createItem("간장 마늘 치킨", "/image50.jpg", "간장 마늘 치킨입니다.", "달콤짭짤한 간장 소스에 마늘향을 더해 바삭하게 튀긴 닭에 버무린 간장 마늘 치킨입니다. 부드러운 육질과 풍부한 맛이 특징입니다.", 11900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item46 = createItem("돈까스", "/image46.jpg", "돈까스 입니다.", "두툼하게 썰어낸 돼지고기를 바삭하게 튀겨낸 정통 돈까스입니다. 고소한 풍미와 진한 소스가 어우러져 남녀노소 모두에게 사랑받는 메뉴입니다.", 12000, 5, Category.ROAST, SubCategory.FRIED, ItemStatus.NEW);
+      Item item47 = createItem("고구마 치즈 돈까스", "/image47.jpg", "고구마 치즈 돈까스 입니다.", "달콤한 고구마와 부드러운 치즈를 돈까스 속에 가득 담았습니다. 겉은 바삭하고 속은 촉촉한, 달콤한 풍미의 색다른 돈까스를 즐겨보세요.", 14500, 5, Category.ROAST, SubCategory.FRIED, ItemStatus.NEW);
+      Item item48 = createItem("생선까스", "/image48.jpg", "생선까스 입니다.", "담백한 흰살 생선을 바삭하게 튀겨낸 부드러운 생선까스입니다. 특제 타르타르 소스와 곁들이면 더욱 풍부한 맛을 느낄 수 있습니다.", 13000, 5, Category.ROAST, SubCategory.FRIED, ItemStatus.NEW);
+      Item item49 = createItem("새우 튀김", "/image49.jpg", "새우 튀김 입니다.", "큼직한 통새우를 바삭하게 튀겨내 탱글한 식감을 살렸습니다. 입안 가득 퍼지는 새우의 감칠맛이 일품인 인기 메뉴입니다.", 6000, 5, Category.ROAST, SubCategory.FRIED, ItemStatus.NEW);
+      Item item50 = createItem("게맛살 튀김", "/image50.jpg", "게맛살 튀김 입니다.", "쫄깃한 게맛살을 고온에서 바삭하게 튀겨낸 고소한 메뉴입니다. 은은한 단맛과 바삭한 식감이 조화롭게 어우러져 간식으로도 제격입니다.", 8000, 5, Category.ROAST, SubCategory.FRIED, ItemStatus.NEW);
+      Item item51 = createItem("순대 볶음", "/image51.jpg", "순대 볶음 입니다.", "고소한 순대에 매콤한 양념을 더해 불맛을 살린 볶음 요리입니다. 쫀득한 식감과 중독성 있는 양념이 어우러져 밥 반찬으로도 딱입니다.", 18000, 5, Category.ROAST, SubCategory.BOKKEUM, ItemStatus.NEW);
+      Item item52 = createItem("고추잡채", "/image52.jpg", "고추잡채 입니다.", "아삭한 채소와 고기를 달큰하고 짭짤하게 볶아낸 중국식 잡채입니다. 부드러운 꽃빵에 싸 먹으면 더욱 특별한 맛을 느낄 수 있습니다.", 16000, 5, Category.ROAST, SubCategory.BOKKEUM, ItemStatus.NEW);
+      Item item53 = createItem("오징어 볶음", "/image53.jpg", "오징어 볶음 입니다.", "탱글한 오징어와 야채를 매콤하게 볶아낸 국민 반찬입니다. 불향 가득한 양념이 밥과 찰떡같이 어우러지는 매콤한 메뉴입니다.", 15000, 5, Category.ROAST, SubCategory.BOKKEUM, ItemStatus.NEW);
+      Item item54 = createItem("불고기", "/image54.jpg", "불고기 입니다.", "달콤한 간장 양념에 재운 소고기를 부드럽게 볶아냈습니다. 감칠맛 나는 육즙과 채소의 조화로 남녀노소 모두 좋아하는 메뉴입니다.", 8000, 5, Category.ROAST, SubCategory.BOKKEUM, ItemStatus.NEW);
+      Item item55 = createItem("감바스", "/image55.jpg", "감바스 입니다.", "올리브오일에 마늘과 새우를 넣어 향긋하게 볶아낸 스페인식 요리입니다. 바게트에 올려 먹으면 더욱 풍미 깊은 맛을 즐기실 수 있습니다.", 9000, 5, Category.ROAST, SubCategory.BOKKEUM, ItemStatus.NEW);
+      Item item56 = createItem("순대국", "/image56.jpg", "순대국 입니다.", "진하게 고아낸 사골 육수에 순대와 머릿고기, 내장 등을 듬뿍 넣어 깊은 풍미를 자랑합니다. 구수하고 진한 국물이 속을 따뜻하게 감싸주며 든든한 한 끼를 완성합니다.", 9000, 5, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
+      Item item57 = createItem("육개장", "/image57.jpg", "육개장 입니다.", "소고기와 숙주, 고사리, 대파 등을 고추기름에 볶아 얼큰하게 끓여낸 전통 국물 요리입니다. 얼큰하고 칼칼한 맛이 입맛을 돋워주며 추운 날씨에도 제격입니다.", 11000, 5, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
+      Item item58 = createItem("선지해장국", "/image58.jpg", "선지해장국 입니다.", "고소하고 부드러운 선지와 우거지, 각종 채소를 얼큰한 양념에 푹 끓여낸 깊은 맛의 해장국입니다. 진한 국물과 푸짐한 건더기가 어우러져 속을 든든하게 달래주는 전통 보양식입니다.", 12000, 5, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
+      Item item59 = createItem("미역국", "/image59.jpg", "미역국 입니다.", "부드러운 미역과 고소한 소고기를 참기름에 볶은 뒤 오랜 시간 정성껏 끓였습니다. 깔끔하고 담백한 국물 맛이 부담 없이 즐기기 좋아 매일 먹어도 질리지 않습니다.", 8000, 5, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
+      Item item60 = createItem("꼬치어묵탕", "/image60.jpg", "꼬치어묵탕 입니다.", "다양한 종류의 어묵을 꼬치에 끼워 시원한 다시마 육수에 정성껏 끓여낸 탕입니다. 은은한 국물 맛과 쫄깃한 어묵이 어우러져 간식이나 식사로도 좋습니다.", 8500, 5, Category.SOUP, SubCategory.TANG, ItemStatus.NEW);
+      Item item61 = createItem("감자탕", "/image61.jpg", "감자탕 입니다.", "돼지 등뼈와 푹 익은 감자, 시래기 등을 매콤한 양념으로 푹 끓여낸 얼큰한 국물 요리입니다. 뼈에 붙은 살점의 쫀득함과 얼큰한 국물이 어우러져 중독적인 맛을 자랑합니다.", 11000, 5, Category.SOUP, SubCategory.TANG, ItemStatus.NEW);
+      Item item62 = createItem("갈비탕", "/image62.jpg", "갈비탕 입니다.", "오랜 시간 푹 고아낸 맑은 국물에 큼직한 갈비와 대추, 당면을 넣어 진한 감칠맛을 냈습니다. 부드럽게 익은 갈비살이 입안에서 살살 풀어지며, 깊은 국물 맛이 일품입니다.", 12000, 5, Category.SOUP, SubCategory.TANG, ItemStatus.NEW);
+      Item item63 = createItem("소머리곰탕", "/image63.jpg", "소머리곰탕 입니다.", "소머리 고기를 정성껏 삶아낸 고소하고 진한 육수에 다양한 부위를 풍성하게 담았습니다. 쫄깃한 식감과 깔끔한 국물이 어우러져 속을 든든하게 채워줍니다.", 10000, 5, Category.SOUP, SubCategory.TANG, ItemStatus.NEW);
+      Item item64 = createItem("삼계탕", "/image64.jpg", "삼계탕 입니다.", "영계 안에 찹쌀, 인삼, 대추, 마늘 등을 넣고 오랜 시간 끓여낸 보양식으로 영양이 풍부합니다. 따뜻한 국물과 부드러운 닭고기가 기력을 회복하는 데 안성맞춤입니다.", 9000, 5, Category.SOUP, SubCategory.TANG, ItemStatus.NEW);
+      Item item65 = createItem("설렁탕", "/image65.jpg", "설렁탕 입니다.", "진한 사골 육수를 오래 끓여 고소하고 부드러운 맛을 살린 전통적인 한국식 국밥입니다. 고기와 국수, 밥을 함께 넣어 먹으면 든든하고 속이 편안해지는 메뉴입니다.", 9000, 5, Category.SOUP, SubCategory.TANG, ItemStatus.NEW);
+      Item item66 = createItem("까르보나라", "/image66.jpg", "까르보나라 입니다.", "고소한 치즈와 진한 크림, 베이컨의 풍미가 어우러진 클래식한 크림 파스타입니다. 부드럽고 진한 소스가 면에 잘 어울려 깊은 감칠맛을 선사합니다.", 9500, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item67 = createItem("알리오 올리오", "/image67.jpg", "알리오 올리오 입니다.", "신선한 마늘과 올리브오일, 매콤한 페퍼론치노가 어우러진 담백한 오일 파스타입니다. 재료는 단순하지만 깔끔한 맛과 향긋한 풍미가 일품입니다.", 11500, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item68 = createItem("봉골레", "/image68.jpg", "봉골레 입니다.", "탱글한 바지락과 화이트 와인을 활용해 시원하고 깊은 맛을 낸 해산물 파스타입니다. 조개 육수의 감칠맛이 면에 배어 고급스러운 풍미를 느낄 수 있습니다.", 14000, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item69 = createItem("로제 파스타", "/image69.jpg", "로제 파스타 입니다.", "토마토소스와 크림소스를 조화롭게 섞어 부드럽고 새콤한 맛을 동시에 즐길 수 있습니다. 고소하면서도 살짝 매콤한 풍미가 입안을 감싸는 인기 메뉴입니다.", 11000, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item70 = createItem("트러플 크림 파스타", "/image70.jpg", "트러플 크림 파스타 입니다.", "고소한 크림소스에 트러플 오일을 더해 풍부하고 고급스러운 향을 더한 파스타입니다. 은은한 트러플 향과 진한 소스가 부드럽게 어우러져 특별한 맛을 자아냅니다.", 13000, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item71 = createItem("새우 크림 파스타", "/image71.jpg", "새우 크림 파스타 입니다.", "탱글한 새우와 부드러운 크림소스가 만나 고소하면서도 깊은 풍미를 자랑합니다. 바다의 신선함과 부드러운 식감이 조화를 이루는 해산물 파스타입니다.", 12500, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item72 = createItem("라자냐", "/image72.jpg", "라자냐 입니다.", "고기, 치즈, 토마토소스를 층층이 쌓아 오븐에 구워낸 진한 맛의 파스타입니다. 풍성한 식감과 구수한 치즈 향이 어우러져 든든한 한 끼로 제격입니다.", 11000, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item73 = createItem("페스토 파스타", "/image73.jpg", "페스토 파스타 입니다.", "바질과 올리브오일, 견과류를 갈아 만든 향긋한 소스가 면을 감싸 신선한 맛을 선사합니다. 고소하면서도 허브의 상큼한 풍미가 가볍게 즐기기 좋은 메뉴입니다.", 12000, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item74 = createItem("뇨끼", "/image74.jpg", "뇨끼 입니다.", "감자와 밀가루로 만든 말랑말랑한 반죽을 소스로 버무린 파스타로, 부드럽고 쫀득한 식감이 매력적입니다. 크림, 토마토, 버터 세이지 등 다양한 소스와 잘 어우러져 깊고 포근한 맛을 선사합니다.", 15000, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item75 = createItem("푸타네스카", "/image75.jpg", "푸타네스카 입니다.", "토마토소스를 베이스로 올리브, 앤초비, 케이퍼를 넣어 감칠맛과 짭조름함이 살아 있는 개성 강한 파스타입니다. 강렬한 풍미와 독특한 향신료 조합이 어우러져 입맛을 확 돋워줍니다.", 16000, 5, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+
 
     itemService.saveItem(item1);
       itemService.saveItem(item2);
@@ -112,6 +143,37 @@ public class CreateService {
       itemService.saveItem(item43);
       itemService.saveItem(item44);
       itemService.saveItem(item45);
+      itemService.saveItem(item46);
+      itemService.saveItem(item47);
+      itemService.saveItem(item48);
+      itemService.saveItem(item49);
+      itemService.saveItem(item50);
+      itemService.saveItem(item51);
+      itemService.saveItem(item52);
+      itemService.saveItem(item53);
+      itemService.saveItem(item54);
+      itemService.saveItem(item55);
+      itemService.saveItem(item56);
+      itemService.saveItem(item57);
+      itemService.saveItem(item58);
+      itemService.saveItem(item59);
+      itemService.saveItem(item60);
+      itemService.saveItem(item61);
+      itemService.saveItem(item62);
+      itemService.saveItem(item63);
+      itemService.saveItem(item64);
+      itemService.saveItem(item65);
+      itemService.saveItem(item66);
+      itemService.saveItem(item67);
+      itemService.saveItem(item68);
+      itemService.saveItem(item69);
+      itemService.saveItem(item70);
+      itemService.saveItem(item71);
+      itemService.saveItem(item72);
+      itemService.saveItem(item73);
+      itemService.saveItem(item74);
+      itemService.saveItem(item75);
+
     memberService.saveAdminMember(AdminMember);
     }
 

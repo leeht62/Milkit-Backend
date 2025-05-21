@@ -65,13 +65,13 @@ public class SecurityConfig implements AuthenticationFailureHandler, Authenticat
   public CorsFilter corsFilter() {
     CorsConfiguration config = new CorsConfiguration();
     config.setAllowCredentials(true);
-    config.addAllowedOrigin("http://localhost:3000");
+    config.addAllowedOriginPattern("https://bugifood.shop");
+    config.addAllowedOriginPattern("https://www.bugifood.shop");
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", config);
     return new CorsFilter(source);
   }
-
 }
 

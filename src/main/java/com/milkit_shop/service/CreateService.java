@@ -60,11 +60,11 @@ public class CreateService {
       Item item38 = createItem("오돌뼈 볶음", "/image38.jpg", "오돌뼈 볶음입니다.", "쫄깃한 돼지 오돌뼈를 매콤한 양념으로 볶아낸 오돌뼈 볶음입니다. 감칠맛과 매운맛이 어우러져 중독성 있는 안주입니다.", 10500, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
       Item item39 = createItem("모둠튀김", "/image39.jpg", "모둠튀김입니다.", "새우, 오징어, 고구마 등 다양한 재료를 바삭하게 튀겨낸 모둠튀김입니다. 기름지지 않고 담백한 튀김으로 소주와 궁합이 뛰어납니다.", 9900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
       Item item40 = createItem("치즈불닭", "/image40.jpg", "치즈불닭입니다.", "매콤한 불닭 위에 고소한 치즈를 듬뿍 올려 오븐에 구워낸 치즈불닭입니다. 맵고 고소한 맛의 조화가 일품입니다.", 11500, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
-      Item item41 = createItem("제육볶음", "/image49.jpg", "제육볶음입니다.", "매콤한 고추장 양념에 돼지고기를 볶아낸 제육볶음입니다. 고기와 양파, 대파의 조화로 술안주와 밥반찬으로 모두 훌륭합니다.", 10900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item41 = createItem("제육볶음", "/image41.jpg", "제육볶음입니다.", "매콤한 고추장 양념에 돼지고기를 볶아낸 제육볶음입니다. 고기와 양파, 대파의 조화로 술안주와 밥반찬으로 모두 훌륭합니다.", 10900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
       Item item42 = createItem("명란 계란말이", "/image42.jpg", "명란 계란말이입니다.", "짭짤한 명란을 부드러운 계란 속에 넣어 만든 명란 계란말이입니다. 은은한 감칠맛과 촉촉한 식감이 매력적입니다.", 9700, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
       Item item43 = createItem("순살 양념닭강정", "/image43.jpg", "순살 양념닭강정입니다.", "한입 크기의 순살 치킨에 달콤매콤한 양념을 입힌 닭강정입니다. 바삭함과 양념의 조화가 뛰어난 인기 안주입니다.", 10800, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
       Item item44 = createItem("골뱅이 무침", "/image44.jpg", "골뱅이 무침입니다.", "쫄깃한 골뱅이에 채 썬 야채와 매콤새콤한 양념을 더해 무쳐낸 골뱅이 무침입니다. 시원한 맥주와 잘 어울리는 대표 안주입니다.", 10200, 5, Category.ANJU, SubCategory.REST, ItemStatus.NEW);
-      Item item45 = createItem("간장 마늘 치킨", "/image50.jpg", "간장 마늘 치킨입니다.", "달콤짭짤한 간장 소스에 마늘향을 더해 바삭하게 튀긴 닭에 버무린 간장 마늘 치킨입니다. 부드러운 육질과 풍부한 맛이 특징입니다.", 11900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
+      Item item45 = createItem("간장 마늘 치킨", "/image45.jpg", "간장 마늘 치킨입니다.", "달콤짭짤한 간장 소스에 마늘향을 더해 바삭하게 튀긴 닭에 버무린 간장 마늘 치킨입니다. 부드러운 육질과 풍부한 맛이 특징입니다.", 11900, 5, Category.ANJU, SubCategory.GRILL, ItemStatus.NEW);
       Item item46 = createItem("돈까스", "/image46.jpg", "돈까스 입니다.", "두툼하게 썰어낸 돼지고기를 바삭하게 튀겨낸 정통 돈까스입니다. 고소한 풍미와 진한 소스가 어우러져 남녀노소 모두에게 사랑받는 메뉴입니다.", 12000, 5, Category.ROAST, SubCategory.FRIED, ItemStatus.NEW);
       Item item47 = createItem("고구마 치즈 돈까스", "/image47.jpg", "고구마 치즈 돈까스 입니다.", "달콤한 고구마와 부드러운 치즈를 돈까스 속에 가득 담았습니다. 겉은 바삭하고 속은 촉촉한, 달콤한 풍미의 색다른 돈까스를 즐겨보세요.", 14500, 5, Category.ROAST, SubCategory.FRIED, ItemStatus.NEW);
       Item item48 = createItem("생선까스", "/image48.jpg", "생선까스 입니다.", "담백한 흰살 생선을 바삭하게 튀겨낸 부드러운 생선까스입니다. 특제 타르타르 소스와 곁들이면 더욱 풍부한 맛을 느낄 수 있습니다.", 13000, 5, Category.ROAST, SubCategory.FRIED, ItemStatus.NEW);

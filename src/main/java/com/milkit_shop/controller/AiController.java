@@ -51,7 +51,7 @@ public class AiController {
         foodListText.toString() +
         "위 목록에서 "+food+"와 관련된 음식 3가지를 각각 하나씩 독립적으로 추천해 주세요. 각 추천 항목은 다음과 같은 형식으로 작성해 주세요: 1. 음식이름: 설명(※ 음식이름은 반드시 하나의 음식만 작성해 주세요. 두 개 이상 조합하지 마세요.)";
 
-    // GPT 호출
+
     String response = aiClient
         .prompt()
         .user(user -> {

@@ -60,7 +60,7 @@ public class SecurityConfig implements AuthenticationFailureHandler, Authenticat
   @Override
   public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
     response.sendRedirect("/login/error");
-  }//
+  }
   @Bean
   public CorsFilter corsFilter() {
     CorsConfiguration config = new CorsConfiguration();

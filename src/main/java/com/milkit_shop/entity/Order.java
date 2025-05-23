@@ -1,9 +1,6 @@
 package com.milkit_shop.entity;
 
-import com.milkit_shop.constant.Delivery;
-import com.milkit_shop.constant.ItemStatus;
-import com.milkit_shop.constant.Recommend;
-import com.milkit_shop.constant.Status;
+import com.milkit_shop.constant.*;
 import com.milkit_shop.exception.DeliveryStatusChangeUnableException;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -46,6 +43,7 @@ public class Order {
   @Enumerated(EnumType.STRING)
   private Delivery delivery;
 
+
   @OneToMany(mappedBy="order", cascade=CascadeType.ALL, orphanRemoval = true, fetch=FetchType.LAZY)
   private List<OrderItem> orderItems = new ArrayList<>();
 
@@ -75,4 +73,5 @@ public class Order {
       throw new DeliveryStatusChangeUnableException("배송 상태 변경 불가능한 주문 상태");
     }
   }
+
 }

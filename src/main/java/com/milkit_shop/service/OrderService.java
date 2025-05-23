@@ -78,6 +78,8 @@ public class OrderService {
   @Transactional
   public List<OrderHistDto> orderList(String userCode) {
     List<Order> orders = orderRepository.findOrders(userCode);
+    Member member=memberRepository.findByUserCode(userCode);
+    int orderCount= orderRepository.countOrders(userCode);
     List<OrderHistDto> orderHistDtos = new ArrayList<>();
     for(Order order : orders){
       OrderHistDto orderHistDto = new OrderHistDto(order);
@@ -88,7 +90,7 @@ public class OrderService {
       }
       orderHistDtos.add(orderHistDto);
     }
-
+    member.checkOrder(orderCount);
     return orderHistDtos;
   }
 
@@ -139,4 +141,6 @@ public class OrderService {
     order.deliveryStatusCheck();
     order.setDelivery(Delivery.RETURN);
   }
+
+
 }

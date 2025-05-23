@@ -12,4 +12,7 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
       "where o.member.userCode = :userCode "+
     "order by o.orderDate desc")
   List<Order> findOrders(@Param("userCode") String userCode);
+
+  @Query("select count(o) from Order o where o.member.userCode = :userCode")
+  int countOrders(@Param("userCode") String userCode);
 }

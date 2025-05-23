@@ -1,9 +1,9 @@
 package com.milkit_shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.milkit_shop.constant.ItemStatus;
 import com.milkit_shop.constant.LoginType;
 import com.milkit_shop.constant.Role;
+import com.milkit_shop.constant.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,6 +35,9 @@ public class Member {
   @Enumerated(EnumType.STRING)
   private LoginType loginType;
 
+  @Column
+  @Enumerated(EnumType.STRING)
+  private User user;
 
   @JsonIgnore
   @OneToMany(mappedBy = "member")
@@ -55,5 +58,9 @@ public class Member {
   @JsonIgnore
   @OneToMany(mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
   private List<Address> addresses = new ArrayList<>();
+
+  public void checkOrder(int orderCount) {
+    this.user = orderCount >= 5 ? User.VIP : User.GENERAL ;
+  }
 
 }

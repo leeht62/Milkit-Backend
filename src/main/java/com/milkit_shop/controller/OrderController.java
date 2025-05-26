@@ -1,9 +1,13 @@
 package com.milkit_shop.controller;
 
+import com.milkit_shop.dto.ErrorResponseDto;
 import com.milkit_shop.dto.OrderDto;
 import com.milkit_shop.dto.OrderHistDto;
 import com.milkit_shop.dto.OrderItemDto;
 import com.milkit_shop.entity.OrderItem;
+import com.milkit_shop.exception.DeliveryStatusChangeUnableException;
+import com.milkit_shop.exception.OrderCancelFailureException;
+import com.milkit_shop.exception.OutOfStockException;
 import com.milkit_shop.service.CartService;
 import com.milkit_shop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class OrderController {
@@ -80,4 +86,21 @@ public class OrderController {
         return ResponseEntity.ok(null);
     }
 
+    @ExceptionHandler(OutOfStockException.class)
+    public ResponseEntity<ErrorResponseDto> handleOutOfStock(OutOfStockException ex) {
+        ErrorResponseDto error = new ErrorResponseDto(ex.getStatus(), ex.getCode(), ex.getMessage());
+        return new ResponseEntity<>(error, error.getStatus());
+    }
+
+    @ExceptionHandler(OrderCancelFailureException.class)
+    public ResponseEntity<ErrorResponseDto> handleOrderCancelFailure(OrderCancelFailureException ex) {
+        ErrorResponseDto error = new ErrorResponseDto(ex.getStatus(), ex.getCode(), ex.getMessage());
+        return new ResponseEntity<>(error, error.getStatus());
+    }
+
+    @ExceptionHandler(DeliveryStatusChangeUnableException.class)
+    public ResponseEntity<ErrorResponseDto> handleDeliveryStatusChangeUnable(DeliveryStatusChangeUnableException ex) {
+        ErrorResponseDto error = new ErrorResponseDto(ex.getStatus(), ex.getCode(), ex.getMessage());
+        return new ResponseEntity<>(error, error.getStatus());
+    }
 }

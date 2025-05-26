@@ -44,7 +44,7 @@ public class MemberController {
   }
 
   @PostMapping("/join")
-  public ResponseEntity<?> join(@RequestBody @Valid Member member) {
+  public ResponseEntity<?> join(@RequestBody Member member) {
     try {
       memberService.saveLocalMember(member);
       return ResponseEntity.ok().build();
@@ -105,22 +105,4 @@ public class MemberController {
     return ResponseEntity.ok().build();
   }
 
-  @RestControllerAdvice
-  public class GlobalExceptionHandler {
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-      String errorMessage = ex.getBindingResult().getFieldErrors()
-          .stream()
-          .map(error -> error.getDefaultMessage())
-          .findFirst()
-          .orElse("입력값이 올바르지 않습니다.");
-      return ResponseEntity.badRequest().body(errorMessage);
-    }
-
-    @ExceptionHandler(IllegalStateException.class)
-    public ResponseEntity<String> handleIllegalStateException(IllegalStateException e) {
-      return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-    }
-  }
 }

@@ -5,6 +5,7 @@ import com.milkit_shop.constant.LoginType;
 import com.milkit_shop.constant.Role;
 import com.milkit_shop.constant.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -22,9 +23,11 @@ public class Member {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
+  @NotBlank(message = "아이디는 필수입니다.")
   @Column(unique=true)
   private String userCode;
 
+  @NotBlank(message = "비밀번호는 필수입니다.")
   private String password;
 
   private String name;

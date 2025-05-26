@@ -6,6 +6,7 @@ import com.milkit_shop.entity.Member;
 import com.milkit_shop.service.MemberService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,11 +14,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.reactive.result.method.annotation.ResponseEntityExceptionHandler;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,11 +44,13 @@ public class MemberController {
   }
 
   @PostMapping("/join")
-  public ResponseEntity<Void> join(@RequestBody Member member) {
-    memberService.saveLocalMember(member);
-    System.out.println("회원가입 요청 받은 MemberDto: " + member);
-    System.out.println("회원가입 완료");
-    return ResponseEntity.ok().build();
+  public ResponseEntity<?> join(@RequestBody @Valid Member member) {
+    try {
+      memberService.saveLocalMember(member);
+      return ResponseEntity.ok().build();
+    }catch (IllegalStateException e) {
+      return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+    }
   }
   @GetMapping(value="/login")
   public ResponseEntity<Void> loginMember(){
@@ -94,5 +103,24 @@ public class MemberController {
     Member member = memberService.findMemberByUserCode(userCode);
     memberService.deleteMember(member);
     return ResponseEntity.ok().build();
+  }
+
+  @RestControllerAdvice
+  public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+      String errorMessage = ex.getBindingResult().getFieldErrors()
+          .stream()
+          .map(error -> error.getDefaultMessage())
+          .findFirst()
+          .orElse("입력값이 올바르지 않습니다.");
+      return ResponseEntity.badRequest().body(errorMessage);
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<String> handleIllegalStateException(IllegalStateException e) {
+      return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+    }
   }
 }

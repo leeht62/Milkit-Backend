@@ -69,23 +69,25 @@ public class ItemService {
     return item.getId();
   }
 
-  public Long updateItem(Long id,ItemFormDto itemFormDto, MultipartFile itemImgFile) throws
-      Exception{
+  public Long updateItem(Long id,ItemFormDto itemFormDto, MultipartFile itemImgFile) throws Exception {
     Item item = itemRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
     item.updateItem(itemFormDto);
     item.ifDiscount();
-    if (item.getItemImgs() == null || item.getItemImgs().isEmpty()) {
-      ItemImg newImg = new ItemImg();
-      newImg.setItem(item);
-      itemImgService.saveItemImg(newImg, itemImgFile);
-      item.setImage(newImg.getImgUrl());
-    } else {
-      Long itemImgId = item.getItemImgs().get(0).getId();
-      itemImgService.updateItemImg(itemImgId, itemImgFile);
-      ItemImg updatedImg = itemImgRepository.findById(itemImgId)
-          .orElseThrow(EntityNotFoundException::new);
-      item.setImage(updatedImg.getImgUrl());
+
+    if (itemImgFile != null) {
+      if (item.getItemImgs() == null || item.getItemImgs().isEmpty()) {
+        ItemImg newImg = new ItemImg();
+        newImg.setItem(item);
+        itemImgService.saveItemImg(newImg, itemImgFile);
+        item.setImage(newImg.getImgUrl());
+      } else {
+        Long itemImgId = item.getItemImgs().get(0).getId();
+        itemImgService.updateItemImg(itemImgId, itemImgFile);
+        ItemImg updatedImg = itemImgRepository.findById(itemImgId)
+                .orElseThrow(EntityNotFoundException::new);
+        item.setImage(updatedImg.getImgUrl());
+      }
     }
 
     return item.getId();

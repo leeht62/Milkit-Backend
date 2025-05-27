@@ -80,7 +80,7 @@ public class MemberController {
 
     Member member = memberService.saveKakaoOAuthMember(kakaoUserInfoDto);
     memberService.login(member, session);
-    response.sendRedirect("http://bugifood.shop");
+    response.sendRedirect("https://bugifood.shop");
     return ResponseEntity.ok().build();
   }
 

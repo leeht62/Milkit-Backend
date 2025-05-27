@@ -70,7 +70,7 @@ public class Item {
     updateItemStatus();
   }
   public void ifDiscount(){
-    if(this.itemStatus==ItemStatus.DISCOUNT){
+    if(this.itemStatus==ItemStatus.DISC){
       this.price = (int)(this.price * 0.7);
     }
   }

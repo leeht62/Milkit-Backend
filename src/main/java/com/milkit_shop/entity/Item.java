@@ -83,7 +83,6 @@ public class Item {
     this.itemStatus=itemFormDto.getItemStatus();
     this.category=itemFormDto.getCategory();
     this.subcategory=itemFormDto.getSubCategory();
-    ifDiscount();
   }
 
 

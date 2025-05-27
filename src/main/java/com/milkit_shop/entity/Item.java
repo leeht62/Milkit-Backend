@@ -81,6 +81,7 @@ public class Item {
     this.price = itemFormDto.getPrice();
     this.stock=itemFormDto.getStock();
     this.content=itemFormDto.getContent();
+    this.subcontent=itemFormDto.getSubcontent();
     this.itemStatus=itemFormDto.getItemStatus();
     this.category=itemFormDto.getCategory();
     this.subcategory=itemFormDto.getSubCategory();

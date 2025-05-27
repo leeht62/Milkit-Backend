@@ -79,6 +79,6 @@ public class BoardService {
 
   public boolean duplicateBoard(Long id, String userCode){
     Board board = boardRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-    return board.getMember().getUserCode().equals(userCode);
+    return board.getMember() != null && board.getMember().getUserCode().equals(userCode);
   }
 }

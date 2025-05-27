@@ -45,6 +45,7 @@ public class Item {
   @Enumerated(EnumType.STRING)
   private SubCategory subcategory;
 
+  @Column(length = 20)
   @Enumerated(EnumType.STRING)
   private ItemStatus itemStatus;
 

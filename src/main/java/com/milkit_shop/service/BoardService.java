@@ -63,7 +63,7 @@ public class BoardService {
   public void deleteBoard(Long id,String userCode) {
     Board board = boardRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     Member member=memberService.findMemberByUserCode(userCode);
-    if (board.getMember().getUserCode().equals(userCode) || member.getRole().name().equals("ROLE_ADMIN")){
+    if ((board.getMember() != null && board.getMember().getUserCode().equals(userCode)) || member.getRole().name().equals("ROLE_ADMIN")){
       boardRepository.deleteById(id);
     }
   }

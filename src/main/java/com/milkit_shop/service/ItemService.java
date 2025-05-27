@@ -26,6 +26,7 @@ public class ItemService {
 
   public void saveItem(Item item) {
     List<Item> existingItem = itemRepository.findByName(item.getName());
+    item.ifDiscount();
     if (existingItem.isEmpty()) {
       itemRepository.save(item);
     } else {
@@ -60,12 +61,11 @@ public class ItemService {
   public Long saveItem(ItemFormDto itemFormDto, MultipartFile itemImgFile) throws Exception{
     Item item = itemFormDto.createItem();
     itemRepository.save(item);
-
     ItemImg itemImg = new ItemImg();
     itemImg.setItem(item);
     itemImgService.saveItemImg(itemImg, itemImgFile);
     item.setImage(itemImg.getImgUrl());
-
+    item.ifDiscount();
     return item.getId();
   }
 
@@ -74,7 +74,7 @@ public class ItemService {
     Item item = itemRepository.findById(id)
         .orElseThrow(EntityNotFoundException::new);
     item.updateItem(itemFormDto);
-
+    item.ifDiscount();
     if (item.getItemImgs() == null || item.getItemImgs().isEmpty()) {
       ItemImg newImg = new ItemImg();
       newImg.setItem(item);

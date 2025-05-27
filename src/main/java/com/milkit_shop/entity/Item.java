@@ -69,6 +69,11 @@ public class Item {
     stock -= count;
     updateItemStatus();
   }
+  public void ifDiscount(){
+    if(this.itemStatus==ItemStatus.DISCOUNT){
+      this.price = (int)(this.price * 0.7);
+    }
+  }
 
   public void updateItem(ItemFormDto itemFormDto){
     this.name = itemFormDto.getName();
@@ -78,6 +83,7 @@ public class Item {
     this.itemStatus=itemFormDto.getItemStatus();
     this.category=itemFormDto.getCategory();
     this.subcategory=itemFormDto.getSubCategory();
+    ifDiscount();
   }
 
 

@@ -19,7 +19,7 @@ public class CreateService {
 
   @PostConstruct
   public void initCreateMock() {
-    Member AdminMember = createMember("관리자","admin","123456789a!");
+    Member AdminMember = createMember("관리자","admin","123456");
       Item item1 = createItem("부대찌개", "/kit1.jpg", "부대찌개 입니다.", "다양한 햄과 소시지, 두부, 채소, 라면사리 등을 고추장 베이스 육수에 푹 끓여낸 얼큰하고 푸짐한 부대찌개입니다. 진한 국물맛과 풍성한 재료가 조화를 이루며, 한국식 퓨전 전골의 진수를 맛볼 수 있습니다.",10000,50, Category.SOUP, SubCategory.JJIGAE, ItemStatus.DISC);
       Item item2 = createItem("김치찌개", "/kimchi.jpg", "김치찌개 입니다.", "잘 익은 김치를 베이스로 돼지고기, 두부, 대파 등을 넣어 얼큰하게 끓여낸 한국 전통 찌개입니다. 깊고 진한 국물 맛과 칼칼한 매운맛이 특징이며, 밥과 함께 먹으면 궁합이 뛰어납니다.", 15000, 50, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
       Item item3 = createItem("된장찌개", "/dwon.jpg", "된장찌개 입니다.", "한국 전통 된장을 베이스로 애호박, 두부, 버섯 등 다양한 채소를 넣고 끓여낸 구수한 된장찌개입니다. 담백하면서도 깊은 맛이 있으며, 한국인의 입맛에 친숙한 대표적인 집밥 메뉴입니다.", 9000, 50, Category.SOUP, SubCategory.JJIGAE, ItemStatus.NEW);
@@ -95,6 +95,8 @@ public class CreateService {
       Item item73 = createItem("페스토 파스타", "/image73.jpg", "페스토 파스타 입니다.", "바질과 올리브오일, 견과류를 갈아 만든 향긋한 소스가 면을 감싸 신선한 맛을 선사합니다. 고소하면서도 허브의 상큼한 풍미가 가볍게 즐기기 좋은 메뉴입니다.", 12000, 50, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
       Item item74 = createItem("뇨끼", "/image74.jpg", "뇨끼 입니다.", "감자와 밀가루로 만든 말랑말랑한 반죽을 소스로 버무린 파스타로, 부드럽고 쫀득한 식감이 매력적입니다. 크림, 토마토, 버터 세이지 등 다양한 소스와 잘 어우러져 깊고 포근한 맛을 선사합니다.", 15000, 50, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
       Item item75 = createItem("푸타네스카", "/image75.jpg", "푸타네스카 입니다.", "토마토소스를 베이스로 올리브, 앤초비, 케이퍼를 넣어 감칠맛과 짭조름함이 살아 있는 개성 강한 파스타입니다. 강렬한 풍미와 독특한 향신료 조합이 어우러져 입맛을 확 돋워줍니다.", 16000, 50, Category.PASTA, SubCategory.Noodle, ItemStatus.NEW);
+      Item item76 = createItem("멘보샤", "/image76.jpg", "멘보샤 입니다.", "멘보샤는 다진 새우를 식빵 사이에 넣고 튀긴 중국식 요리입니다. 겉은 바삭하고 속은 촉촉해 안주나 간식으로 인기가 많습니다.", 5000, 50, Category.ANJU, SubCategory.REST, ItemStatus.DISC);
+      Item item77 = createItem("치킨", "/image77.jpg", "치킨 입니다.", "치킨은 바삭하게 튀긴 닭고기로 남녀노소 모두에게 사랑받는 인기 있는 음식입니다. 다양한 양념과 조리법으로 즐길 수 있어 안주나 식사로 자주 선택됩니다.", 8000, 50, Category.ROAST, SubCategory.FRIED, ItemStatus.DISC);
 
 
     itemService.saveItem(item1);
@@ -173,6 +175,8 @@ public class CreateService {
       itemService.saveItem(item73);
       itemService.saveItem(item74);
       itemService.saveItem(item75);
+      itemService.saveItem(item76);
+      itemService.saveItem(item77);
 
     memberService.saveAdminMember(AdminMember);
     }
